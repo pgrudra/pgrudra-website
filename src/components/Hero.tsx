@@ -1,3 +1,4 @@
+"use client";
 import { motion } from 'framer-motion'
 
 export default function Hero() {
@@ -18,7 +19,7 @@ export default function Hero() {
           transition={{ duration: 0.5, delay: 0.2 }}
           className="text-xl"
         >
-          Web Developer | Designer | Your Profession
+          Software Development Engineer
         </motion.p>
       </div>
     </section>

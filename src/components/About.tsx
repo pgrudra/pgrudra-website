@@ -1,3 +1,4 @@
+"use client";
 import { motion } from 'framer-motion';
 
 export default function About() {
@@ -19,10 +20,10 @@ export default function About() {
           className="max-w-2xl mx-auto text-center"
         >
           <p className="text-lg mb-4">
-            Hi, I'm Prajwal Rudrakshi. I'm a Software Developer based in India. 
+            Hi, I&apos;m Prajwal Rudrakshi. I&apos;m a Software Developer based in India. 
           </p>
           <p className="text-lg mb-4">
-            With 3 years of experience in Java, I've worked on a variety of projects ranging from Spring Boot to Android.
+            With 3 years of experience in Java, I&apos;ve worked on a variety of projects ranging from Spring Boot to Android.
           </p>
           <p className="text-lg">
             I like to go for jogging. I have a roadbike which I do want to ride, but laziness has taken over me in this regard.
