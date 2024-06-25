@@ -8,14 +8,14 @@ export default function Footer() {
               <p>&copy; {new Date().getFullYear()} Your Name. All rights reserved.</p>
             </div>
             <div className="flex space-x-4">
-              <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer" className="hover:text-gray-300">
+              <a href="https://github.com/pgrudra" target="_blank" rel="noopener noreferrer" className="hover:text-gray-300">
                 GitHub
               </a>
-              <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener noreferrer" className="hover:text-gray-300">
+              <a href="https://www.linkedin.com/in/prajwal-rudrakshi-69b2b324b?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BHCVnw9P5TfSi6reW%2F1EDwQ%3D%3D" target="_blank" rel="noopener noreferrer" className="hover:text-gray-300">
                 LinkedIn
               </a>
-              <a href="https://twitter.com/yourusername" target="_blank" rel="noopener noreferrer" className="hover:text-gray-300">
-                Twitter
+              <a href="https://x.com/pgrudr" target="_blank" rel="noopener noreferrer" className="hover:text-gray-300">
+                X
               </a>
             </div>
           </div>
