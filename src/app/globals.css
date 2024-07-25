@@ -1,33 +1,58 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+  --matrix-background: #000000;
+  --matrix-text: #03A062;
+  --bright-background: #FF6600;
+  --bright-text: #FFF5E6;;
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  margin: 0;
+  padding: 0;
+  font-family: 'Courier New', Courier, monospace;
+  transition: background-color 0.3s, color 0.3s;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+body.matrix-theme {
+  background-color: var(--matrix-background);
+  color: var(--matrix-text);
+}
+
+body.bright-theme {
+  background-color: var(--bright-background);
+  color: var(--bright-text);
+}
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1000;
+}
+
+.matrix-theme header {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.bright-theme header {
+  background-color: rgba(255, 245, 230, 0.8);
+}
+
+nav ul {
+  display: flex;
+  list-style-type: none;
+  padding: 0;
+}
+
+nav ul li {
+  margin-right: 20px;
+  cursor: pointer;
+}
+
+.theme-toggle {
+  cursor: pointer;
 }
