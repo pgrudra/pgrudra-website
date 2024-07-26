@@ -52,9 +52,9 @@ const RecentWork = () => {
       description: (
         <p>
           As a freelance developer at Z
-          <span style={{ fontFamily: "gotham" }}>ü</span>s, sprearheading
-          android app dev for Vult: Private Cloud & overseeing android app dev
-          for Bolt: Cloud Storage Economy.
+          <span style={{ fontFamily: "gotham" }}>ü</span>s, sprearheading app
+          dev for Vult: Private Cloud & overseeing app dev for Bolt: Cloud
+          Storage Economy.
         </p>
       ),
     },
