@@ -79,16 +79,20 @@ const NameWrapper = styled.div`
   }
 `;
 
-const PillButton = styled.button<{ bgColor: string }>`
-  background-color: ${(props) => props.bgColor};
-  color: white;
+const PillButton = styled.button<{ bgImage: string; opacity: number }>`
+  background-image: url(${(props) => props.bgImage});
+  width: 66px;
+  height: 60px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: transparent;
   border: none;
-  padding: 15px 30px;
-  border-radius: 20px;
   cursor: pointer;
   margin-top: 10px;
   margin-left: 40px;
   margin-right: 40px;
+  opacity: ${(props) => props.opacity};
 
   @media (max-width: 768px) {
     margin: 10px;
@@ -153,7 +157,7 @@ const UnderlinedLink = styled.span`
 
 const EmailFormContainer = styled.div<{ show: boolean; opacity: number }>`
   position: absolute;
-  top: 110%;
+  top: 100%;
   left: -10%;
   width: 120%;
   border-bottom-left-radius: 20px;
@@ -196,7 +200,7 @@ const SectionWrapper = styled.div`
 
 export default function Home() {
   const { theme } = useTheme();
-  const [bluePillColor, setBluePillColor] = useState("blue");
+  const [bluePillOpacity, setBluePillOpacity] = useState(0);
   const [tooltipOpacity, setTooltipOpacity] = useState(0);
   const [showEmailForm, setShowEmailForm] = useState(false);
   const [email, setEmail] = useState("");
@@ -226,14 +230,13 @@ export default function Home() {
           Math.pow(event.clientY - buttonCenterY, 2)
       );
 
-      const maxDistance = 200;
-      const minDistance = 100;
+      const maxDistance = 300;
+      const minDistance = 150;
       let distanceRatio = Math.min(
         Math.max(0, distance - minDistance) / (maxDistance - minDistance),
         1
       );
-      const newColor = `rgb(0, 0, ${Math.round(255 * distanceRatio)})`;
-      setBluePillColor(newColor);
+      setBluePillOpacity(distanceRatio);
       setTooltipOpacity(1 - distanceRatio);
 
       if (distanceRatio >= 1) setShowEmailForm(false);
@@ -262,8 +265,8 @@ export default function Home() {
   };
 
   return (
-    <>
-      <HomeContainer id="home" onMouseMove={handleMouseMove}>
+    <div onMouseMove={handleMouseMove}>
+      <HomeContainer id="home">
         <ContentWrapper>
           <TextContent>
             {theme === "matrix" ? (
@@ -286,18 +289,20 @@ export default function Home() {
                 </div>
                 <div>
                   <PillButton
-                    bgColor="red"
+                    bgImage="/red-pill.png"
                     onClick={() =>
                       handleClick(
                         "https://calendar.app.google/tSkdxka8E9aqJaKM6"
                       )
                     }
+                    opacity={1}
                   ></PillButton>
                   <PillContainer>
                     <PillButton
                       id="bluePill"
-                      bgColor={bluePillColor}
+                      bgImage="/blue-pill.png"
                       onClick={handleBluePillClick}
+                      opacity={bluePillOpacity}
                     ></PillButton>
                     <TooltipContainer opacity={tooltipOpacity}>
                       <TooltipText>
@@ -363,6 +368,6 @@ export default function Home() {
       <SectionWrapper id="skills">
         <Skills />
       </SectionWrapper>
-    </>
+    </div>
   );
 }
