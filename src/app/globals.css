@@ -47,7 +47,7 @@ header {
 }
 
 .bright-theme header {
-  background-color: #FF6600
+  background-color: rgb(255, 102, 0, 0.8)
 }
 
 nav ul {
@@ -59,6 +59,12 @@ nav ul {
 nav ul li {
   margin-right: 20px;
   cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  nav ul li {
+    margin-right: 18px;
+  }
 }
 
 .theme-toggle {
