@@ -14,7 +14,8 @@ const HomeContainer = styled.div`
 
   @media (max-width: 768px) {
     height: auto;
-    padding: 200px;
+    padding: 20px;
+    padding-top: 60dp;
   }
 `;
 
