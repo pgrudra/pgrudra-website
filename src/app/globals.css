@@ -1,3 +1,10 @@
+@font-face {
+  font-family: 'MatrixFont';
+  src: url('/fonts/matrix.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 :root {
   --matrix-background: #000000;
   --matrix-text: #03A062;
@@ -8,18 +15,19 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Courier New', Courier, monospace;
   transition: background-color 0.3s, color 0.3s;
 }
 
 body.matrix-theme {
   background-color: var(--matrix-background);
   color: var(--matrix-text);
+  font-family: 'MatrixFont', sans-serif;
 }
 
 body.bright-theme {
   background-color: var(--bright-background);
   color: var(--bright-text);
+  font-family: sans-serif;
 }
 
 header {
@@ -55,4 +63,5 @@ nav ul li {
 
 .theme-toggle {
   cursor: pointer;
+  margin-right: 20px;
 }
