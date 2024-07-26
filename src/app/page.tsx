@@ -4,6 +4,8 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import styled from "@emotion/styled";
 import { useTheme } from "./ThemeContext";
+import RecentWork from "./RecentWork";
+import Skills from "./Skills";
 
 const HomeContainer = styled.div`
   display: flex;
@@ -188,6 +190,10 @@ const SubmitButton = styled.button`
   font-family: Matrix-font;
 `;
 
+const SectionWrapper = styled.div`
+  margin-top: 20px;
+`;
+
 export default function Home() {
   const { theme } = useTheme();
   const [bluePillColor, setBluePillColor] = useState("blue");
@@ -256,97 +262,107 @@ export default function Home() {
   };
 
   return (
-    <HomeContainer onMouseMove={handleMouseMove}>
-      <ContentWrapper>
-        <TextContent>
-          {theme === "matrix" ? (
-            <>
-              <div style={{ textAlign: "center" }}>
-                <p style={{ marginBottom: "0px", fontSize: "28px" }}>
-                  Choose your Pill
-                </p>
-                <p
-                  style={{
-                    textAlign: "justify",
-                    marginTop: "10px",
-                    lineHeight: "30px",
-                  }}
-                >
-                  Red to Connect with Me!
-                  <br />
-                  Blue to PollBetter!
-                </p>
-              </div>
-              <div>
-                <PillButton
-                  bgColor="red"
+    <>
+      <HomeContainer id="home" onMouseMove={handleMouseMove}>
+        <ContentWrapper>
+          <TextContent>
+            {theme === "matrix" ? (
+              <>
+                <div style={{ textAlign: "center" }}>
+                  <p style={{ marginBottom: "0px", fontSize: "28px" }}>
+                    Choose your Pill
+                  </p>
+                  <p
+                    style={{
+                      textAlign: "justify",
+                      marginTop: "10px",
+                      lineHeight: "30px",
+                    }}
+                  >
+                    Red to Connect with Me!
+                    <br />
+                    Blue to PollBetter!
+                  </p>
+                </div>
+                <div>
+                  <PillButton
+                    bgColor="red"
+                    onClick={() =>
+                      handleClick(
+                        "https://calendar.app.google/tSkdxka8E9aqJaKM6"
+                      )
+                    }
+                  ></PillButton>
+                  <PillContainer>
+                    <PillButton
+                      id="bluePill"
+                      bgColor={bluePillColor}
+                      onClick={handleBluePillClick}
+                    ></PillButton>
+                    <TooltipContainer opacity={tooltipOpacity}>
+                      <TooltipText>
+                        PollBetter is under development.
+                        <br />
+                        <UnderlinedLink onClick={handleOptInClick}>
+                          Opt to get notified upon launch
+                        </UnderlinedLink>
+                        !
+                      </TooltipText>
+                    </TooltipContainer>
+                    <EmailFormContainer
+                      show={showEmailForm}
+                      opacity={tooltipOpacity}
+                    >
+                      <EmailForm onSubmit={handleEmailSubmit}>
+                        <EmailInput
+                          type="email"
+                          value={email}
+                          onChange={(e) => setEmail(e.target.value)}
+                          placeholder="Enter your email"
+                          required
+                        />
+                        <SubmitButton type="submit">Notify Me</SubmitButton>
+                      </EmailForm>
+                    </EmailFormContainer>
+                  </PillContainer>
+                </div>
+              </>
+            ) : (
+              <>
+                <p>Connect With Me</p>
+                <ConnectButton
                   onClick={() =>
                     handleClick("https://calendar.app.google/tSkdxka8E9aqJaKM6")
                   }
-                ></PillButton>
-                <PillContainer>
-                  <PillButton
-                    id="bluePill"
-                    bgColor={bluePillColor}
-                    onClick={handleBluePillClick}
-                  ></PillButton>
-                  <TooltipContainer opacity={tooltipOpacity}>
-                    <TooltipText>
-                      PollBetter is under development.
-                      <br />
-                      <UnderlinedLink onClick={handleOptInClick}>
-                        Opt to get notified upon launch
-                      </UnderlinedLink>
-                      !
-                    </TooltipText>
-                  </TooltipContainer>
-                  <EmailFormContainer
-                    show={showEmailForm}
-                    opacity={tooltipOpacity}
-                  >
-                    <EmailForm onSubmit={handleEmailSubmit}>
-                      <EmailInput
-                        type="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        placeholder="Enter your email"
-                        required
-                      />
-                      <SubmitButton type="submit">Notify Me</SubmitButton>
-                    </EmailForm>
-                  </EmailFormContainer>
-                </PillContainer>
-              </div>
-            </>
-          ) : (
-            <>
-              <p>Connect With Me</p>
-              <ConnectButton
-                onClick={() =>
-                  handleClick("https://calendar.app.google/tSkdxka8E9aqJaKM6")
+                >
+                  Connect
+                </ConnectButton>
+              </>
+            )}
+          </TextContent>
+          <ImageWrapper>
+            <ImageContainer>
+              <Image
+                src={
+                  theme === "matrix"
+                    ? "/my-photo-matrix.png"
+                    : "/my-photo-bright.png"
                 }
-              >
-                Connect
-              </ConnectButton>
-            </>
-          )}
-        </TextContent>
-        <ImageWrapper>
-          <ImageContainer>
-            <Image
-              src={
-                theme === "matrix"
-                  ? "/my-photo-matrix.png"
-                  : "/my-photo-bright.png"
-              }
-              alt="Prajwal Rudrakshi's image"
-              width={200}
-              height={200}
-            />
-          </ImageContainer>
-        </ImageWrapper>
-        <NameWrapper>Prajwal Rudrakshi</NameWrapper>
-      </ContentWrapper>
-    </HomeContainer>
+                alt="Prajwal Rudrakshi's image"
+                width={200}
+                height={200}
+              />
+            </ImageContainer>
+          </ImageWrapper>
+          <NameWrapper>Prajwal Rudrakshi</NameWrapper>
+        </ContentWrapper>
+      </HomeContainer>
+      <SectionWrapper id="what-am-i-up-to">
+        <RecentWork />
+      </SectionWrapper>
+      <SectionWrapper id="skills">
+        <Skills />
+      </SectionWrapper>
+    </>
   );
 }
