@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import styled from "@emotion/styled";
 import { useTheme } from "./ThemeContext";
@@ -28,7 +28,7 @@ const TextContent = styled.div`
   flex-direction: column;
   align-items: flex-end;
   width: 300px;
-  margin-right: 900px; // Adjust this value to create space for the image
+  margin-right: 800px; // Adjust this value to create space for the image
 `;
 
 const ImageWrapper = styled.div`
@@ -46,15 +46,16 @@ const NameWrapper = styled.div`
   ); // Adjust this value to position the name relative to the image
 `;
 
-const PillButton = styled.button<{ color: "red" | "blue" }>`
-  background-color: ${(props) => props.color};
+const PillButton = styled.button<{ bgColor: string }>`
+  background-color: ${(props) => props.bgColor};
   color: white;
   border: none;
-  padding: 12px 30px;
+  padding: 15px 30px;
   border-radius: 20px;
   cursor: pointer;
   margin-top: 10px;
-  margin-left: 60px;
+  margin-left: 50px;
+  margin-right: 40px;
 `;
 
 const ConnectButton = styled.button`
@@ -79,13 +80,40 @@ const ImageContainer = styled.div`
 
 export default function Home() {
   const { theme } = useTheme();
+  const [bluePillColor, setBluePillColor] = useState("blue");
 
   const handleClick = (url: string) => {
     window.open(url, "_blank");
   };
 
+  const handleMouseMove = (event: React.MouseEvent) => {
+    const bluePill = document.getElementById("bluePill");
+    if (bluePill) {
+      const buttonRect = bluePill.getBoundingClientRect();
+      const buttonCenterX = buttonRect.left + buttonRect.width / 2;
+      const buttonCenterY = buttonRect.top + buttonRect.height / 2;
+      const distance = Math.sqrt(
+        Math.pow(event.clientX - buttonCenterX, 2) +
+          Math.pow(event.clientY - buttonCenterY, 2)
+      );
+
+      const maxDistance = 200;
+      const minDistance = 100;
+      let distanceRatio = Math.min(
+        Math.max(0, distance - minDistance) / maxDistance,
+        1
+      );
+      const newColor = `rgb(
+      ${Math.round(255 * (1 - distanceRatio))}, 
+      0, 
+      ${Math.round(255 * distanceRatio)}
+    )`;
+      setBluePillColor(newColor);
+    }
+  };
+
   return (
-    <HomeContainer>
+    <HomeContainer onMouseMove={handleMouseMove}>
       <ContentWrapper>
         <TextContent>
           {theme === "matrix" ? (
@@ -100,17 +128,18 @@ export default function Home() {
               </div>
               <div>
                 <PillButton
-                  color="red"
+                  bgColor="red"
                   onClick={() =>
                     handleClick("https://calendar.app.google/tSkdxka8E9aqJaKM6")
                   }
-                ></PillButton>
+                />
                 <PillButton
-                  color="blue"
+                  id="bluePill"
+                  bgColor={bluePillColor}
                   onClick={() =>
                     handleClick("https://calendar.app.google/tSkdxka8E9aqJaKM6")
                   }
-                ></PillButton>
+                />
               </div>
             </>
           ) : (

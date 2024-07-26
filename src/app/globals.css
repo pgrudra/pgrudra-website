@@ -9,13 +9,13 @@
   --matrix-background: #000000;
   --matrix-text: #03A062;
   --bright-background: #FF6600;
-  --bright-text: #FFF5E6;;
+  --bright-text: #FFF5E6;
 }
 
 body {
   margin: 0;
   padding: 0;
-  transition: background-color 0.3s, color 0.3s;
+  transition: background-color 0.0s, color 0.3s;
 }
 
 body.matrix-theme {
@@ -47,7 +47,7 @@ header {
 }
 
 .bright-theme header {
-  background-color: rgba(255, 245, 230, 0.8);
+  background-color: #FF6600
 }
 
 nav ul {
