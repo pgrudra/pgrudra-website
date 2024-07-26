@@ -11,6 +11,11 @@ const HomeContainer = styled.div`
   align-items: center;
   height: 60vh;
   padding-top: 0px;
+
+  @media (max-width: 768px) {
+    height: auto;
+    padding: 20px;
+  }
 `;
 
 const ContentWrapper = styled.div`
@@ -20,6 +25,10 @@ const ContentWrapper = styled.div`
   width: 100%;
   max-width: 1200px;
   position: relative;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
 `;
 
 const TextContent = styled.div`
@@ -28,22 +37,42 @@ const TextContent = styled.div`
   flex-direction: column;
   align-items: flex-end;
   width: 300px;
-  margin-right: 800px; // Adjust this value to create space for the image
+  margin-right: 800px;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    align-items: center;
+    margin-right: 0;
+    text-align: center;
+    order: 3;
+    margin-top: 20px;
+  }
 `;
 
 const ImageWrapper = styled.div`
   position: absolute;
   left: 60%;
   transform: translateX(-50%);
+
+  @media (max-width: 768px) {
+    position: static;
+    transform: none;
+    order: 1;
+    margin-bottom: 20px;
+  }
 `;
 
 const NameWrapper = styled.div`
   font-size: 36px;
   font-weight: bold;
   position: absolute;
-  left: calc(
-    60% + 120px
-  ); // Adjust this value to position the name relative to the image
+  left: calc(60% + 120px);
+
+  @media (max-width: 768px) {
+    position: static;
+    order: 2;
+    margin-bottom: 20px;
+  }
 `;
 
 const PillButton = styled.button<{ bgColor: string }>`
@@ -56,6 +85,10 @@ const PillButton = styled.button<{ bgColor: string }>`
   margin-top: 10px;
   margin-left: 50px;
   margin-right: 40px;
+
+  @media (max-width: 768px) {
+    margin: 10px;
+  }
 `;
 
 const ConnectButton = styled.button`
@@ -132,14 +165,14 @@ export default function Home() {
                   onClick={() =>
                     handleClick("https://calendar.app.google/tSkdxka8E9aqJaKM6")
                   }
-                />
+                ></PillButton>
                 <PillButton
                   id="bluePill"
                   bgColor={bluePillColor}
                   onClick={() =>
                     handleClick("https://calendar.app.google/tSkdxka8E9aqJaKM6")
                   }
-                />
+                ></PillButton>
               </div>
             </>
           ) : (
