@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import styled from "@emotion/styled";
 import { useTheme } from "./ThemeContext";
@@ -39,6 +39,7 @@ const TextContent = styled.div`
   align-items: flex-end;
   width: 300px;
   margin-right: 800px;
+  margin-top: 24px;
 
   @media (max-width: 768px) {
     width: 100%;
@@ -84,7 +85,7 @@ const PillButton = styled.button<{ bgColor: string }>`
   border-radius: 20px;
   cursor: pointer;
   margin-top: 10px;
-  margin-left: 50px;
+  margin-left: 40px;
   margin-right: 40px;
 
   @media (max-width: 768px) {
@@ -112,9 +113,97 @@ const ImageContainer = styled.div`
   height: 200px;
 `;
 
+const PillContainer = styled.div`
+  position: relative;
+  display: inline-block;
+`;
+
+const TooltipContainer = styled.div<{ opacity: number }>`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  border-radius: 20px;
+  opacity: ${(props) => props.opacity};
+  transition: opacity 0.3s ease;
+  padding: 10px;
+  box-sizing: border-box;
+  text-align: center;
+  font-size: 14px;
+`;
+
+const TooltipText = styled.div`
+  position: relative;
+  z-index: 1;
+`;
+
+const UnderlinedLink = styled.span`
+  text-decoration: underline;
+  cursor: pointer;
+`;
+
+const EmailFormContainer = styled.div<{ show: boolean; opacity: number }>`
+  position: absolute;
+  top: 110%;
+  left: -10%;
+  width: 120%;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  padding: 10px;
+  box-sizing: border-box;
+  opacity: ${(props) => props.opacity};
+  display: ${(props) => (props.show ? "block" : "none")};
+  z-index: 2;
+`;
+
+const EmailForm = styled.form`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+`;
+
+const EmailInput = styled.input`
+  margin-bottom: 5px;
+  padding: 5px;
+  width: 90%;
+  font-size: 12px;
+`;
+
+const SubmitButton = styled.button`
+  background-color: #03a062;
+  color: black;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 12px;
+  font-family: Matrix-font;
+`;
+
 export default function Home() {
   const { theme } = useTheme();
   const [bluePillColor, setBluePillColor] = useState("blue");
+  const [tooltipOpacity, setTooltipOpacity] = useState(0);
+  const [showEmailForm, setShowEmailForm] = useState(false);
+  const [email, setEmail] = useState("");
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   const handleClick = (url: string) => {
     window.open(url, "_blank");
@@ -134,16 +223,36 @@ export default function Home() {
       const maxDistance = 200;
       const minDistance = 100;
       let distanceRatio = Math.min(
-        Math.max(0, distance - minDistance) / maxDistance,
+        Math.max(0, distance - minDistance) / (maxDistance - minDistance),
         1
       );
-      const newColor = `rgb(
-      ${Math.round(255 * (1 - distanceRatio))}, 
-      0, 
-      ${Math.round(255 * distanceRatio)}
-    )`;
+      const newColor = `rgb(0, 0, ${Math.round(255 * distanceRatio)})`;
       setBluePillColor(newColor);
+      setTooltipOpacity(1 - distanceRatio);
+
+      if (distanceRatio >= 1) setShowEmailForm(false);
     }
+  };
+
+  const handleBluePillClick = () => {
+    if (isMobile) {
+      setTooltipOpacity(tooltipOpacity === 0 ? 1 : 0);
+    }
+  };
+
+  const handleOptInClick = () => {
+    setShowEmailForm(true);
+  };
+
+  const handleEmailSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // Here you would typically send the email to your backend
+    console.log("Email submitted:", email);
+    setShowEmailForm(false);
+    setEmail("");
+    alert(
+      "Thank you for your interest! We'll notify you when PollBetter launches."
+    );
   };
 
   return (
@@ -153,11 +262,19 @@ export default function Home() {
           {theme === "matrix" ? (
             <>
               <div style={{ textAlign: "center" }}>
-                <p>Choose</p>
-                <p style={{ textAlign: "justify" }}>
-                  Red pill to connect with me!
+                <p style={{ marginBottom: "0px", fontSize: "28px" }}>
+                  Choose your Pill
+                </p>
+                <p
+                  style={{
+                    textAlign: "justify",
+                    marginTop: "10px",
+                    lineHeight: "30px",
+                  }}
+                >
+                  Red to Connect with Me!
                   <br />
-                  Blue pill to get a gift!
+                  Blue to PollBetter!
                 </p>
               </div>
               <div>
@@ -167,13 +284,38 @@ export default function Home() {
                     handleClick("https://calendar.app.google/tSkdxka8E9aqJaKM6")
                   }
                 ></PillButton>
-                <PillButton
-                  id="bluePill"
-                  bgColor={bluePillColor}
-                  onClick={() =>
-                    handleClick("https://calendar.app.google/tSkdxka8E9aqJaKM6")
-                  }
-                ></PillButton>
+                <PillContainer>
+                  <PillButton
+                    id="bluePill"
+                    bgColor={bluePillColor}
+                    onClick={handleBluePillClick}
+                  ></PillButton>
+                  <TooltipContainer opacity={tooltipOpacity}>
+                    <TooltipText>
+                      PollBetter is under development.
+                      <br />
+                      <UnderlinedLink onClick={handleOptInClick}>
+                        Opt to get notified upon launch
+                      </UnderlinedLink>
+                      !
+                    </TooltipText>
+                  </TooltipContainer>
+                  <EmailFormContainer
+                    show={showEmailForm}
+                    opacity={tooltipOpacity}
+                  >
+                    <EmailForm onSubmit={handleEmailSubmit}>
+                      <EmailInput
+                        type="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        placeholder="Enter your email"
+                        required
+                      />
+                      <SubmitButton type="submit">Notify Me</SubmitButton>
+                    </EmailForm>
+                  </EmailFormContainer>
+                </PillContainer>
               </div>
             </>
           ) : (
