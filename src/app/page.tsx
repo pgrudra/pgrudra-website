@@ -200,7 +200,7 @@ const SectionWrapper = styled.div`
 
 export default function Home() {
   const { theme } = useTheme();
-  const [bluePillOpacity, setBluePillOpacity] = useState(0);
+  const [bluePillOpacity, setBluePillOpacity] = useState(1);
   const [tooltipOpacity, setTooltipOpacity] = useState(0);
   const [showEmailForm, setShowEmailForm] = useState(false);
   const [email, setEmail] = useState("");
