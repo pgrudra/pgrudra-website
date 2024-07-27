@@ -57,8 +57,12 @@ const Header: React.FC = () => {
             What am I up to
           </NavItem>
           <NavItem onClick={() => scrollToSection("skills")}>Skills</NavItem>
-          <NavItem>Experience</NavItem>
-          <NavItem>More About Me</NavItem>
+          <NavItem onClick={() => scrollToSection("experience")}>
+            Experience
+          </NavItem>
+          <NavItem onClick={() => scrollToSection("more-about-me")}>
+            More About Me
+          </NavItem>
         </NavList>
       </nav>
       <ThemeToggle onClick={toggleTheme}>
