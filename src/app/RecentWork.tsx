@@ -6,6 +6,7 @@ const SectionContainer = styled.div`
   padding: 40px 20px;
   max-width: 1200px;
   margin: 0 auto;
+  background-color: "rgb(255,0,255)";
 `;
 
 const Title = styled.h2`
@@ -25,8 +26,8 @@ const ActivityItem = styled.li`
   border-radius: 10px;
   background-color: ${(props) =>
     props.theme === "matrix"
-      ? "rgba(3, 160, 98, 0.1)"
-      : "rgba(255, 245, 230, 0.1)"};
+      ? "rgba(3, 160, 98, 0.2)"
+      : "rgba(255, 102, 0,0.1)"};
 `;
 
 const ActivityTitle = styled.h3`

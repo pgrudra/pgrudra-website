@@ -8,8 +8,8 @@
 :root {
   --matrix-background: #000000;
   --matrix-text: #03A062;
-  --bright-background: #FF6600;
-  --bright-text: #FFF5E6;
+  --bright-text: rgb(255, 102, 0);
+  --bright-content-background: rgb(255, 255, 255);
   --seseva-link-matrix: #00FF00;
   --seseva-link-bright: #0000FF;
 }
@@ -17,7 +17,7 @@
 body {
   margin: 0;
   padding: 0;
-  transition: background-color 0.0s, color 0.3s;
+  transition: background-color 0.1s, color 0.1s;
 }
 
 body.matrix-theme {
@@ -27,7 +27,9 @@ body.matrix-theme {
 }
 
 body.bright-theme {
-  background-color: var(--bright-background);
+  background-image: url('/bright-theme-pattern.svg');
+  background-repeat: repeat;
+  background-size: auto;
   color: var(--bright-text);
   font-family: sans-serif;
 }
@@ -42,6 +44,7 @@ header {
   justify-content: space-between;
   align-items: center;
   z-index: 1000;
+  transition: background-color 0.1s, color 0.1s;
 }
 
 .matrix-theme header {
@@ -49,7 +52,7 @@ header {
 }
 
 .bright-theme header {
-  background-color: rgb(255, 102, 0, 0.8)
+  background-color: rgba(255, 102, 0, 0.2)
 }
 
 nav ul {

@@ -15,7 +15,11 @@ const HeaderContainer = styled.header`
   align-items: center;
   z-index: 1000;
   background-color: ${(props) =>
-    props.theme === "matrix" ? "rgba(0, 0, 0, 0.8)" : "rgba(255, 102, 0, 0.8)"};
+    props.theme === "matrix" ? "rgba(0, 0, 0, 0.8)" : "rgba(255, 102, 0, 0.2)"};
+  backdrop-filter: ${(props) =>
+    props.theme === "matrix" ? "none" : "blur(5px)"};
+  box-shadow: ${(props) =>
+    props.theme === "matrix" ? "none" : "0 2px 10px rgba(0,0,0,0.1)"};
 `;
 
 const NavList = styled.ul`
@@ -44,7 +48,11 @@ const Header: React.FC = () => {
   const scrollToSection = (sectionId: string) => {
     const section = document.getElementById(sectionId);
     if (section) {
-      section.scrollIntoView({ behavior: "smooth" });
+      const offsetPosition = section.offsetTop - 40;
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth",
+      });
     }
   };
 
