@@ -16,14 +16,15 @@ const ExperienceItem = styled.div`
   margin-bottom: 30px;
 `;
 
-const CompanyName = styled.h3`
-  font-size: 24px;
-  margin-bottom: 10px;
+const TitleDurationContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 `;
 
-const JobTitle = styled.h4`
-  font-size: 20px;
-  margin-bottom: 5px;
+const TitleAtCompany = styled.h3`
+  font-size: 22px;
+  margin-bottom: 10px;
 `;
 
 const JobDuration = styled.p`
@@ -32,34 +33,61 @@ const JobDuration = styled.p`
 `;
 
 const JobDescription = styled.p`
-  line-height: 1.6;
+  line-height: 1;
+`;
+
+const SeSEVALink = styled.a`
+  text-decoration: underline;
+  cursor: pointer;
 `;
 
 const Experience: React.FC = () => {
   return (
     <ExperienceContainer id="experience">
-      <ExperienceTitle>Experience</ExperienceTitle>
+      <ExperienceTitle>Past Experience</ExperienceTitle>
       <ExperienceItem>
-        <CompanyName>Tech Company A</CompanyName>
-        <JobTitle>Senior Software Engineer</JobTitle>
-        <JobDuration>January 2020 - Present</JobDuration>
+        <TitleDurationContainer>
+          <TitleAtCompany>Software Engineer @ Xpressbees</TitleAtCompany>
+          <JobDuration>June 2022 - June 2024</JobDuration>
+        </TitleDurationContainer>
         <JobDescription>
-          Led development of key features for the company's main product.
-          Mentored junior developers and implemented best practices for code
-          quality.
+          Integrated the company's internal systems with the ONDC framework
+          through Java Spring Boot Application.
+        </JobDescription>
+        <JobDescription>
+          Owned backend tasks for Dynamic Rate Billing for Remote Service
+          Centres, which processes rates for around 15 lakh shipments per day.
         </JobDescription>
       </ExperienceItem>
       <ExperienceItem>
-        <CompanyName>Tech Startup B</CompanyName>
-        <JobTitle>Full Stack Developer</JobTitle>
-        <JobDuration>June 2017 - December 2019</JobDuration>
+        <TitleDurationContainer>
+          <TitleAtCompany>Project Intern @ Life and Limb</TitleAtCompany>
+          <JobDuration>Dec. 2021 - Feb. 2022</JobDuration>
+        </TitleDurationContainer>
         <JobDescription>
-          Worked on both frontend and backend development for a fast-growing
-          startup. Implemented new features and optimized existing codebase for
-          better performance.
+          Developed prototype of an orthotic hand device for people suffering
+          from neurological disorders
         </JobDescription>
       </ExperienceItem>
-      {/* Add more ExperienceItem components as needed */}
+      <ExperienceItem>
+        <TitleDurationContainer>
+          <TitleAtCompany>Founder @ SeSEVA</TitleAtCompany>
+          <JobDuration>May 2021 - Aug. 2021</JobDuration>
+        </TitleDurationContainer>
+        <JobDescription>
+          Ideated, Architectured and Developed{" "}
+          <SeSEVALink
+            href="https://github.com/pgrudra/SeSEVA"
+            className="repo-link"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            SeSEVA
+          </SeSEVALink>
+          , an android application which provides a means to social service as
+          an incentive for smartphone de-addiction.
+        </JobDescription>
+      </ExperienceItem>
     </ExperienceContainer>
   );
 };

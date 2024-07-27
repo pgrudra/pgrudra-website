@@ -10,6 +10,8 @@
   --matrix-text: #03A062;
   --bright-background: #FF6600;
   --bright-text: #FFF5E6;
+  --seseva-link-matrix: #00FF00;
+  --seseva-link-bright: #0000FF;
 }
 
 body {
@@ -70,4 +72,12 @@ nav ul li {
 .theme-toggle {
   cursor: pointer;
   margin-right: 20px;
+}
+
+.matrix-theme .repo-link {
+  color: var(--repo-link-matrix);
+}
+
+.bright-theme .repo-link {
+  color: var(--repo-link-bright);
 }

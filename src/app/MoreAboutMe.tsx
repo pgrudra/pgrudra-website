@@ -28,7 +28,7 @@ const SectionTitle = styled.h3`
   margin-bottom: 10px;
 `;
 
-const SectionContent = styled.p`
+const SectionContent = styled.div`
   line-height: 1.6;
 `;
 
@@ -38,27 +38,24 @@ const MoreAboutMe: React.FC = () => {
       <MoreAboutMeTitle>More About Me</MoreAboutMeTitle>
       <MoreAboutMeContent>
         <MoreAboutMeSection>
-          <SectionTitle>Hobbies</SectionTitle>
+          <SectionTitle>Upbringing</SectionTitle>
           <SectionContent>
-            In my free time, I enjoy hiking, photography, and playing the
-            guitar. I'm always looking for new trails to explore and capture
-            beautiful landscapes.
+            I was born & brought up in Bagalkot, a town in Karnataka, India. My
+            father, a professor of Mechanical Engineering & mother a dedicated
+            homemaker raised me with at most care. I still live with my parents
+            in the same town & build tech products for the world. Their support
+            has been instrumental in shaping my journey.
           </SectionContent>
         </MoreAboutMeSection>
         <MoreAboutMeSection>
-          <SectionTitle>Volunteering</SectionTitle>
+          <SectionTitle>Education</SectionTitle>
           <SectionContent>
-            I'm passionate about giving back to the community. I volunteer at
-            local code camps, teaching programming basics to underprivileged
-            youth.
-          </SectionContent>
-        </MoreAboutMeSection>
-        <MoreAboutMeSection>
-          <SectionTitle>Goals</SectionTitle>
-          <SectionContent>
-            My goal is to continue growing as a developer and eventually start
-            my own tech company that focuses on solving environmental
-            challenges.
+            Studied in hometown till 10th grade. Then went to Narayana,
+            Hyderabad, where I had the most gratified years of my life. It's due
+            to the mentorship of my teachers & staff, and my hardwork that I
+            cracked JEE Advanced & joined IIT Kanpur for a degree in Physics.
+            Though I feel I couldn't take much advantage of my time at IIT,
+            happy that I made friends for life over there.
           </SectionContent>
         </MoreAboutMeSection>
       </MoreAboutMeContent>
