@@ -1,6 +1,7 @@
 import "./globals.css";
 import { ThemeProvider } from "./ThemeContext";
 import Header from "./Header";
+import Footer from "./Footer";
 
 export const metadata = {
   title: "Prajwal Rudrakshi - Personal Website",
@@ -18,6 +19,7 @@ export default function RootLayout({
         <ThemeProvider>
           <Header />
           <main>{children}</main>
+          <Footer />
         </ThemeProvider>
       </body>
     </html>
