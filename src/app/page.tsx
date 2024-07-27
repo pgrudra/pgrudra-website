@@ -6,6 +6,8 @@ import styled from "@emotion/styled";
 import { useTheme } from "./ThemeContext";
 import RecentWork from "./RecentWork";
 import Skills from "./Skills";
+import Experience from "./Experience";
+import MoreAboutMe from "./MoreAboutMe";
 
 const HomeContainer = styled.div`
   display: flex;
@@ -367,6 +369,12 @@ export default function Home() {
       </SectionWrapper>
       <SectionWrapper id="skills">
         <Skills />
+      </SectionWrapper>
+      <SectionWrapper id="experience">
+        <Experience />
+      </SectionWrapper>
+      <SectionWrapper id="more-about-me">
+        <MoreAboutMe />
       </SectionWrapper>
     </div>
   );
