@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import styled from "@emotion/styled";
+import { keyframes } from "@emotion/react";
 import { useTheme } from "./ThemeContext";
 import RecentWork from "./RecentWork";
 import Skills from "./Skills";
@@ -55,10 +56,61 @@ const TextContent = styled.div`
   }
 `;
 
+const slideOutToRight = keyframes`
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+`;
+
+const slideOutToLeft = keyframes`
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+`;
+
+const slideInFromLeft = keyframes`
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+`;
+
+const slideInFromRight = keyframes`
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+`;
+
 const ImageWrapper = styled.div`
   position: absolute;
   left: 60%;
   transform: translateX(-50%);
+  width: 200px;
+  height: 200px;
+  overflow: hidden;
+  border-bottom-left-radius: 5px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 5px;
 
   @media (max-width: 768px) {
     position: static;
@@ -85,7 +137,7 @@ const PillButton = styled.button<{ bgImage: string; opacity: number }>`
   background-image: url(${(props) => props.bgImage});
   width: 66px;
   height: 60px;
-  background-size: cover;
+  background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
   background-color: transparent;
@@ -111,14 +163,32 @@ const ConnectButton = styled.button`
   margin-top: 10px;
 `;
 
-const ImageContainer = styled.div`
-  border-bottom-left-radius: 5px;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
-  border-bottom-right-radius: 5px;
-  overflow: hidden;
-  width: 200px;
-  height: 200px;
+const ImageContainer = styled.div<{
+  isVisible: boolean;
+  animationType: string;
+}>`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  animation: ${(props) => {
+      switch (props.animationType) {
+        case "slideOutToRight":
+          return slideOutToRight;
+        case "slideOutToLeft":
+          return slideOutToLeft;
+        case "slideInFromLeft":
+          return slideInFromLeft;
+        case "slideInFromRight":
+          return slideInFromRight;
+        default:
+          return "none";
+      }
+    }}
+    0.5s ease-in-out forwards;
+  opacity: ${(props) => (props.isVisible ? 1 : 0)};
+  transition: opacity 0.5s ease-in-out;
 `;
 
 const PillContainer = styled.div`
@@ -207,6 +277,11 @@ export default function Home() {
   const [showEmailForm, setShowEmailForm] = useState(false);
   const [email, setEmail] = useState("");
   const [isMobile, setIsMobile] = useState(false);
+  const [previousTheme, setPreviousTheme] = useState<string | null>(null);
+  const [matrixImageAnimation, setMatrixImageAnimation] =
+    useState<string>("none");
+  const [brightImageAnimation, setBrightImageAnimation] =
+    useState<string>("none");
 
   useEffect(() => {
     const checkMobile = () => {
@@ -216,6 +291,19 @@ export default function Home() {
     window.addEventListener("resize", checkMobile);
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
+
+  useEffect(() => {
+    if (previousTheme && previousTheme !== theme) {
+      if (theme === "matrix") {
+        setBrightImageAnimation("slideOutToLeft");
+        setMatrixImageAnimation("slideInFromRight");
+      } else {
+        setMatrixImageAnimation("slideOutToRight");
+        setBrightImageAnimation("slideInFromLeft");
+      }
+    }
+    setPreviousTheme(theme);
+  }, [theme, previousTheme]);
 
   const handleClick = (url: string) => {
     window.open(url, "_blank");
@@ -336,28 +424,103 @@ export default function Home() {
               </>
             ) : (
               <>
-                <p>Connect With Me</p>
-                <ConnectButton
-                  onClick={() =>
-                    handleClick("https://calendar.app.google/tSkdxka8E9aqJaKM6")
-                  }
+                <div
+                  style={{
+                    textAlign: "center",
+                  }}
                 >
-                  Connect
-                </ConnectButton>
+                  <p
+                    style={{
+                      marginBottom: "0px",
+                      fontSize: "28px",
+                      backdropFilter: "blur(5px)",
+                      backgroundColor: "rgba(255,255,255,0.8)",
+                    }}
+                  >
+                    Choose your Kit
+                  </p>
+                  <p
+                    style={{
+                      textAlign: "justify",
+                      marginTop: "10px",
+                      lineHeight: "30px",
+                      backdropFilter: "blur(5px)",
+                      backgroundColor: "rgba(255,255,255,0.8)",
+                    }}
+                  >
+                    Fins to Connect with Me!
+                    <br />
+                    Rucksack to PollBetter!
+                  </p>
+                </div>
+                <div>
+                  <PillButton
+                    bgImage="/scuba-fins.png"
+                    onClick={() =>
+                      handleClick(
+                        "https://calendar.app.google/tSkdxka8E9aqJaKM6"
+                      )
+                    }
+                    opacity={1}
+                  ></PillButton>
+                  <PillContainer>
+                    <PillButton
+                      id="bluePill"
+                      bgImage="/rucksack.png"
+                      onClick={handleBluePillClick}
+                      opacity={bluePillOpacity}
+                    ></PillButton>
+                    <TooltipContainer opacity={tooltipOpacity}>
+                      <TooltipText>
+                        PollBetter is under development.
+                        <br />
+                        <UnderlinedLink onClick={handleOptInClick}>
+                          Opt to get notified upon launch
+                        </UnderlinedLink>
+                        !
+                      </TooltipText>
+                    </TooltipContainer>
+                    <EmailFormContainer
+                      show={showEmailForm}
+                      opacity={tooltipOpacity}
+                    >
+                      <EmailForm onSubmit={handleEmailSubmit}>
+                        <EmailInput
+                          type="email"
+                          value={email}
+                          onChange={(e) => setEmail(e.target.value)}
+                          placeholder="Enter your email"
+                          required
+                        />
+                        <SubmitButton type="submit">Notify Me</SubmitButton>
+                      </EmailForm>
+                    </EmailFormContainer>
+                  </PillContainer>
+                </div>
               </>
             )}
           </TextContent>
           <ImageWrapper>
-            <ImageContainer>
+            <ImageContainer
+              isVisible={theme === "matrix"}
+              animationType={matrixImageAnimation}
+            >
               <Image
-                src={
-                  theme === "matrix"
-                    ? "/my-photo-matrix.png"
-                    : "/my-photo-bright.png"
-                }
-                alt="Prajwal Rudrakshi's image"
-                width={200}
-                height={200}
+                src="/my-photo-matrix.png"
+                alt="Prajwal Rudrakshi's matrix image"
+                layout="fill"
+                objectFit="cover"
+              />
+            </ImageContainer>
+            <ImageContainer
+              isVisible={theme !== "matrix"}
+              animationType={brightImageAnimation}
+            >
+              <Image
+                src="/my-photo-bright.png"
+                alt="Prajwal Rudrakshi's bright image"
+                layout="fill"
+                objectFit="cover"
               />
             </ImageContainer>
           </ImageWrapper>
