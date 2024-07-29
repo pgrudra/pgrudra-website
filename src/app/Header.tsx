@@ -76,7 +76,7 @@ const Header: React.FC = () => {
         </NavList>
       </nav>
       <ThemeToggle onClick={toggleTheme}>
-        {theme === "matrix" ? "Go Adventure" : "Go Matrix"}
+        {theme === "matrix" ? "Go Venture" : "Go Matrix"}
       </ThemeToggle>
     </HeaderContainer>
   );
