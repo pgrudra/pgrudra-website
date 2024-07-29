@@ -34,6 +34,8 @@ const ContentWrapper = styled.div`
 
   @media (max-width: 768px) {
     flex-direction: column;
+    align-items: center;
+    padding: 0 20px;
   }
 `;
 
@@ -51,7 +53,7 @@ const TextContent = styled.div`
     align-items: center;
     margin-right: 0;
     text-align: center;
-    order: 3;
+    order: 2;
     margin-top: 20px;
   }
 `;
@@ -113,9 +115,11 @@ const ImageWrapper = styled.div`
   border-bottom-right-radius: 5px;
 
   @media (max-width: 768px) {
-    position: static;
-    transform: none;
-    order: 1;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 150px; // Reduced size for mobile
+    height: 150px; // Reduced size for mobile
     margin-bottom: 20px;
   }
 `;
@@ -128,7 +132,7 @@ const NameWrapper = styled.div`
 
   @media (max-width: 768px) {
     position: static;
-    order: 2;
+    order: 1;
     margin-bottom: 20px;
   }
 `;
