@@ -35,6 +35,9 @@ const JobDuration = styled.p`
 const JobDescription = styled.p`
   line-height: 0.4;
   font-family: "gotham";
+  @media (max-width: 768px) {
+    line-height: 1.6;
+  }
 `;
 
 const SeSEVALink = styled.a`

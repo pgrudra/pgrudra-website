@@ -16,7 +16,6 @@ const MoreAboutMeContent = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 40px;
-  font-family: "gotham";
 `;
 
 const MoreAboutMeSection = styled.div`
@@ -31,6 +30,7 @@ const SectionTitle = styled.h3`
 
 const SectionContent = styled.div`
   line-height: 1.6;
+  font-family: "gotham";
 `;
 
 const MoreAboutMe: React.FC = () => {
