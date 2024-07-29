@@ -27,9 +27,11 @@ body.matrix-theme {
 }
 
 body.bright-theme {
-  background-image: url('/bright-theme-pattern.svg');
-  background-repeat: repeat;
-  background-size: auto;
+  background-image: url('/bright-background.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
   color: var(--bright-text);
   font-family: sans-serif;
 }
