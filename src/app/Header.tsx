@@ -35,13 +35,13 @@ const NavItem = styled.li`
   cursor: pointer;
 
   @media (max-width: 768px) {
-    margin-right: 16px;
+    margin-right: 15px;
   }
 `;
 
 const ThemeToggle = styled.div`
   cursor: pointer;
-  margin-right: 20px;
+  margin-right: 22px;
 `;
 
 const Header: React.FC = () => {
