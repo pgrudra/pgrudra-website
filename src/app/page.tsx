@@ -200,6 +200,7 @@ const TooltipContainer = styled.div<{ opacity: number }>`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  color: ${(props) => (props.theme === "matrix" ? "white" : "#126fb1")};
   background-color: "none";
   border-radius: 20px;
   opacity: ${(props) => props.opacity};
