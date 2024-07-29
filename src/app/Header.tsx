@@ -28,6 +28,7 @@ const NavList = styled.ul`
   display: flex;
   list-style-type: none;
   padding: 0;
+  margin-left: 30px;
 `;
 
 const NavItem = styled.li`
@@ -42,6 +43,9 @@ const NavItem = styled.li`
 const ThemeToggle = styled.div`
   cursor: pointer;
   margin-right: 22px;
+  @media (max-width: 768px) {
+    margin-right: ${(props) => (props.theme === "matrix" ? "22px" : "20px")};
+  }
 `;
 
 const Header: React.FC = () => {
@@ -75,7 +79,7 @@ const Header: React.FC = () => {
           </NavItem>
         </NavList>
       </nav>
-      <ThemeToggle onClick={toggleTheme}>
+      <ThemeToggle onClick={toggleTheme} theme={theme}>
         {theme === "matrix" ? "Go Venture" : "Go Matrix"}
       </ThemeToggle>
     </HeaderContainer>
