@@ -27,7 +27,7 @@ body.matrix-theme {
 }
 
 body.bright-theme {
-  background-image: url('/bright-background.png');
+  background-image: url('/bright-theme-pattern.svg');
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
