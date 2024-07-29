@@ -239,35 +239,36 @@ const EmailFormContainer = styled.div<{ show: boolean; opacity: number }>`
   }
 `;
 
-const EmailForm = styled.form`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-`;
-
 const EmailInput = styled.input`
-  margin-bottom: 5px;
   padding: 5px;
   width: 90%;
   font-size: 12px;
 `;
 
-const SubmitButton = styled.button`
+const SubmitButton = styled.button<{ theme: string }>`
   background-color: ${({ theme }) =>
-    theme === "matrix" ? "03a062" : "#0c7bbc"};
+    theme === "matrix" ? "#0c84bc" : "#0c7bbc"};
 
-  color: black;
+  color: ${({ theme }) => (theme === "matrix" ? "black" : "#beeaf3")};
   border: none;
   padding: 5px 10px;
   border-radius: 5px;
   cursor: pointer;
   font-size: 12px;
-  font-family: Matrix-font;
+  margin-top: 5px;
 `;
 
 const SectionWrapper = styled.div`
   margin-top: 20px;
+`;
+
+const MailchimpFormContainer = styled.div`
+  width: 100%;
+  background: transparent;
+  align-items: center;
+  display: flex;
+  display: flex;
+  flex-direction: column;
 `;
 
 export default function Home() {
@@ -282,7 +283,46 @@ export default function Home() {
     useState<string>("none");
   const [brightImageAnimation, setBrightImageAnimation] =
     useState<string>("none");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState("");
 
+  const handleEmailSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitError("");
+
+    try {
+      const response = await fetch(
+        "https://app.us22.list-manage.com/subscribe/post-json?u=5566bab7bcfbeb7bdaf60e277&id=3a92b4aa25&c=?",
+        {
+          method: "POST",
+          body: JSON.stringify({
+            EMAIL: email,
+            b_5566bab7bcfbeb7bdaf60e277_3a92b4aa25: "", // This is the honeypot field
+          }),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      const data = await response.json();
+
+      if (data.result === "success") {
+        setShowEmailForm(false);
+        setEmail("");
+        alert(
+          "Thank you for subscribing! You'll be notified when PollBetter launches."
+        );
+      } else {
+        setSubmitError(data.msg || "An error occurred. Please try again.");
+      }
+    } catch (error) {
+      setSubmitError("An error occurred. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
   useEffect(() => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth <= 768);
@@ -343,17 +383,6 @@ export default function Home() {
     setShowEmailForm(true);
   };
 
-  const handleEmailSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Here you would typically send the email to your backend
-    console.log("Email submitted:", email);
-    setShowEmailForm(false);
-    setEmail("");
-    alert(
-      "Thank you for your interest! We'll notify you when PollBetter launches."
-    );
-  };
-
   return (
     <div onMouseMove={handleMouseMove}>
       <HomeContainer id="home">
@@ -408,16 +437,43 @@ export default function Home() {
                       show={showEmailForm}
                       opacity={tooltipOpacity}
                     >
-                      <EmailForm onSubmit={handleEmailSubmit}>
-                        <EmailInput
-                          type="email"
-                          value={email}
-                          onChange={(e) => setEmail(e.target.value)}
-                          placeholder="Enter your email"
-                          required
-                        />
-                        <SubmitButton type="submit">Notify Me</SubmitButton>
-                      </EmailForm>
+                      <MailchimpFormContainer>
+                        <form
+                          onSubmit={handleEmailSubmit}
+                          style={{
+                            width: "100%",
+                            display: "flex",
+                            flexDirection: "column",
+                            alignItems: "center",
+                          }}
+                        >
+                          <EmailInput
+                            type="email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            placeholder="Enter your email"
+                            required
+                          />
+                          {submitError && (
+                            <p
+                              style={{
+                                color: "red",
+                                fontSize: "12px",
+                                margin: "2px",
+                              }}
+                            >
+                              {submitError}
+                            </p>
+                          )}
+                          <SubmitButton
+                            type="submit"
+                            disabled={isSubmitting}
+                            theme={theme}
+                          >
+                            {isSubmitting ? "Submitting..." : "Notify Me"}
+                          </SubmitButton>
+                        </form>
+                      </MailchimpFormContainer>
                     </EmailFormContainer>
                   </PillContainer>
                 </div>
@@ -480,16 +536,43 @@ export default function Home() {
                       show={showEmailForm}
                       opacity={tooltipOpacity}
                     >
-                      <EmailForm onSubmit={handleEmailSubmit}>
-                        <EmailInput
-                          type="email"
-                          value={email}
-                          onChange={(e) => setEmail(e.target.value)}
-                          placeholder="Enter your email"
-                          required
-                        />
-                        <SubmitButton type="submit">Notify Me</SubmitButton>
-                      </EmailForm>
+                      <MailchimpFormContainer>
+                        <form
+                          onSubmit={handleEmailSubmit}
+                          style={{
+                            width: "100%",
+                            display: "flex",
+                            flexDirection: "column",
+                            alignItems: "center",
+                          }}
+                        >
+                          <EmailInput
+                            type="email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            placeholder="Enter your email"
+                            required
+                          />
+                          {submitError && (
+                            <p
+                              style={{
+                                color: "red",
+                                fontSize: "12px",
+                                margin: "2px",
+                              }}
+                            >
+                              {submitError}
+                            </p>
+                          )}
+                          <SubmitButton
+                            type="submit"
+                            disabled={isSubmitting}
+                            theme={theme}
+                          >
+                            {isSubmitting ? "Submitting..." : "Notify Me"}
+                          </SubmitButton>
+                        </form>
+                      </MailchimpFormContainer>
                     </EmailFormContainer>
                   </PillContainer>
                 </div>
