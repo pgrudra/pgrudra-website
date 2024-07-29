@@ -29,6 +29,9 @@ const NavList = styled.ul`
   list-style-type: none;
   padding: 0;
   margin-left: 30px;
+  @media (max-width: 768px) {
+    margin-left: 0px;
+  }
 `;
 
 const NavItem = styled.li`
