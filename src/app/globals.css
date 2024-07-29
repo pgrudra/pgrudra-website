@@ -9,9 +9,6 @@
   --matrix-background: #000000;
   --matrix-text: #03A062;
   --bright-text: rgb(12, 160, 188);
-  --bright-content-background: rgb(255, 255, 255);
-  --seseva-link-matrix: #00FF00;
-  --seseva-link-bright: #0000FF;
 }
 
 body {

@@ -153,16 +153,6 @@ const PillButton = styled.button<{ bgImage: string; opacity: number }>`
   }
 `;
 
-const ConnectButton = styled.button`
-  background-color: #eeff00;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
-  margin-top: 10px;
-`;
-
 const ImageContainer = styled.div<{
   isVisible: boolean;
   animationType: string;
@@ -256,7 +246,9 @@ const EmailInput = styled.input`
 `;
 
 const SubmitButton = styled.button`
-  background-color: #03a062;
+  background-color: ${({ theme }) =>
+    theme === "matrix" ? "03a062" : "#0c7bbc"};
+
   color: black;
   border: none;
   padding: 5px 10px;
