@@ -45,7 +45,7 @@ const NavItem = styled.li`
 
 const ThemeToggle = styled.div`
   cursor: pointer;
-  margin-right: 22px;
+  margin-right: 30px;
   @media (max-width: 768px) {
     margin-right: ${(props) => (props.theme === "matrix" ? "22px" : "20px")};
   }
