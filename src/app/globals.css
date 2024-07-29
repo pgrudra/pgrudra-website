@@ -8,7 +8,7 @@
 :root {
   --matrix-background: #000000;
   --matrix-text: #03A062;
-  --bright-text: rgb(255, 102, 0);
+  --bright-text: rgb(12, 160, 188);
   --bright-content-background: rgb(255, 255, 255);
   --seseva-link-matrix: #00FF00;
   --seseva-link-bright: #0000FF;
@@ -53,7 +53,7 @@ header {
 }
 
 .bright-theme header {
-  background-color: rgba(255, 102, 0, 0.2)
+  background-color: rgba(12, 160, 188, 0.2)
 }
 
 nav ul {

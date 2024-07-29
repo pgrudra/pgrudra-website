@@ -15,7 +15,9 @@ const HeaderContainer = styled.header`
   align-items: center;
   z-index: 1000;
   background-color: ${(props) =>
-    props.theme === "matrix" ? "rgba(0, 0, 0, 0.8)" : "rgba(255, 102, 0, 0.2)"};
+    props.theme === "matrix"
+      ? "rgba(0, 0, 0, 0.8)"
+      : "rgba(12, 160, 188, 0.2)"};
   backdrop-filter: ${(props) =>
     props.theme === "matrix" ? "none" : "blur(5px)"};
   box-shadow: ${(props) =>

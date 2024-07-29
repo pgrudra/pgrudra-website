@@ -433,8 +433,6 @@ export default function Home() {
                     style={{
                       marginBottom: "0px",
                       fontSize: "28px",
-                      backdropFilter: "blur(5px)",
-                      backgroundColor: "rgba(255,255,255,0.8)",
                     }}
                   >
                     Choose your Kit
@@ -444,8 +442,6 @@ export default function Home() {
                       textAlign: "justify",
                       marginTop: "10px",
                       lineHeight: "30px",
-                      backdropFilter: "blur(5px)",
-                      backgroundColor: "rgba(255,255,255,0.8)",
                     }}
                   >
                     Fins to Connect with Me!

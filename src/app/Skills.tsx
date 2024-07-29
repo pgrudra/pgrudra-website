@@ -27,7 +27,7 @@ const SkillItem = styled.div`
   background-color: ${(props) =>
     props.theme === "matrix"
       ? "rgba(3, 160, 98, 0.15)"
-      : "rgba(255, 102, 0,0.1)"};
+      : "rgba(12, 160, 188,0.1)"};
 `;
 
 const SkillName = styled.h3`
@@ -38,7 +38,7 @@ const SkillName = styled.h3`
 const SkillLevel = styled.div<{ level: number }>`
   height: 10px;
   background-color: ${(props) =>
-    props.theme === "matrix" ? "#03A062" : "#FF5600"};
+    props.theme === "matrix" ? "#03A062" : "#087388"};
   border-radius: 5px;
   width: ${(props) => props.level}%;
 `;

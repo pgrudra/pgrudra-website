@@ -27,7 +27,7 @@ const ActivityItem = styled.li`
   background-color: ${(props) =>
     props.theme === "matrix"
       ? "rgba(3, 160, 98, 0.15)"
-      : "rgba(255, 102, 0,0.1)"};
+      : "rgba(12, 160, 188,0.1)"};
 `;
 
 const ActivityTitle = styled.h3`
