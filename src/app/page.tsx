@@ -153,7 +153,7 @@ const PillButton = styled.button<{ bgImage: string; opacity: number }>`
   opacity: ${(props) => props.opacity};
 
   @media (max-width: 768px) {
-    margin: 10px;
+    margin: 20px;
   }
 `;
 
@@ -190,7 +190,7 @@ const PillContainer = styled.div`
   display: inline-block;
 `;
 
-const TooltipContainer = styled.div<{ opacity: number }>`
+const TooltipContainer = styled.div<{ opacity: number; theme: string }>`
   position: absolute;
   top: 0;
   left: 0;
@@ -211,9 +211,10 @@ const TooltipContainer = styled.div<{ opacity: number }>`
   font-size: 14px;
 `;
 
-const TooltipText = styled.div`
+const TooltipText = styled.div<{ theme: string }>`
   position: relative;
   z-index: 1;
+  color: ${(props) => (props.theme === "matrix" ? "#00FFFF" : "#126fb1")};
 `;
 
 const UnderlinedLink = styled.span`
@@ -233,6 +234,9 @@ const EmailFormContainer = styled.div<{ show: boolean; opacity: number }>`
   opacity: ${(props) => props.opacity};
   display: ${(props) => (props.show ? "block" : "none")};
   z-index: 2;
+  @media (max-width: 768px) {
+    margin-top: 4px;
+  }
 `;
 
 const EmailForm = styled.form`
@@ -390,8 +394,8 @@ export default function Home() {
                       onClick={handleBluePillClick}
                       opacity={bluePillOpacity}
                     ></PillButton>
-                    <TooltipContainer opacity={tooltipOpacity}>
-                      <TooltipText>
+                    <TooltipContainer opacity={tooltipOpacity} theme={theme}>
+                      <TooltipText theme={theme}>
                         PollBetter is under development.
                         <br />
                         <UnderlinedLink onClick={handleOptInClick}>
@@ -462,8 +466,8 @@ export default function Home() {
                       onClick={handleBluePillClick}
                       opacity={bluePillOpacity}
                     ></PillButton>
-                    <TooltipContainer opacity={tooltipOpacity}>
-                      <TooltipText>
+                    <TooltipContainer opacity={tooltipOpacity} theme={theme}>
+                      <TooltipText theme={theme}>
                         PollBetter is under development.
                         <br />
                         <UnderlinedLink onClick={handleOptInClick}>
