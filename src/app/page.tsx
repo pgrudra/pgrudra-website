@@ -235,7 +235,7 @@ const EmailFormContainer = styled.div<{ show: boolean; opacity: number }>`
   display: ${(props) => (props.show ? "block" : "none")};
   z-index: 2;
   @media (max-width: 768px) {
-    margin-top: 4px;
+    margin-top: 2px;
   }
 `;
 
