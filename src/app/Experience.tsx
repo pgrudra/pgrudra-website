@@ -24,7 +24,7 @@ const TitleDurationContainer = styled.div`
 
 const TitleAtCompany = styled.h3`
   font-size: 22px;
-  margin-bottom: 10px;
+  margin-bottom: 6px;
 `;
 
 const JobDuration = styled.p`
@@ -33,7 +33,8 @@ const JobDuration = styled.p`
 `;
 
 const JobDescription = styled.p`
-  line-height: 1;
+  line-height: 0.4;
+  font-family: "gotham";
 `;
 
 const SeSEVALink = styled.a`

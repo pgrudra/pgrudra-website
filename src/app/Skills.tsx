@@ -26,7 +26,7 @@ const SkillItem = styled.div`
   text-align: center;
   background-color: ${(props) =>
     props.theme === "matrix"
-      ? "rgba(3, 160, 98, 0.2)"
+      ? "rgba(3, 160, 98, 0.15)"
       : "rgba(255, 102, 0,0.1)"};
 `;
 
@@ -48,8 +48,8 @@ const Skills = () => {
 
   const skills = [
     { name: "Java", level: 90 },
-    { name: "Kotlin", level: 60 },
     { name: "Python", level: 20 },
+    { name: "Kotlin", level: 60 },
     { name: "JavaScript", level: 10 },
     { name: "SpringBoot", level: 85 },
     { name: "Android", level: 85 },

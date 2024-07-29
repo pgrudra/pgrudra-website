@@ -15,7 +15,8 @@ const MoreAboutMeTitle = styled.h2`
 const MoreAboutMeContent = styled.div`
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 40px;
+  font-family: "gotham";
 `;
 
 const MoreAboutMeSection = styled.div`

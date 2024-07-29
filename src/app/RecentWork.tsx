@@ -26,7 +26,7 @@ const ActivityItem = styled.li`
   border-radius: 10px;
   background-color: ${(props) =>
     props.theme === "matrix"
-      ? "rgba(3, 160, 98, 0.2)"
+      ? "rgba(3, 160, 98, 0.15)"
       : "rgba(255, 102, 0,0.1)"};
 `;
 
@@ -37,6 +37,7 @@ const ActivityTitle = styled.h3`
 
 const ActivityDescription = styled.p`
   font-size: 18px;
+  font-family: "gotham";
 `;
 
 const RecentWork = () => {
