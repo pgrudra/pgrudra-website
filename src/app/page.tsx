@@ -118,8 +118,8 @@ const ImageWrapper = styled.div`
     position: relative;
     left: 50%;
     transform: translateX(-50%);
-    width: 150px; // Reduced size for mobile
-    height: 150px; // Reduced size for mobile
+    width: 150px;
+    height: 150px;
     margin-bottom: 20px;
   }
 `;
@@ -200,8 +200,7 @@ const TooltipContainer = styled.div<{ opacity: number }>`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: rgba(0, 0, 0, 0.8);
-  color: white;
+  background-color: "none";
   border-radius: 20px;
   opacity: ${(props) => props.opacity};
   transition: opacity 0.3s ease;
