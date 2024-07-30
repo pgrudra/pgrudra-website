@@ -160,6 +160,8 @@ const PillButton = styled.button<{ bgImage: string; opacity: number }>`
 const ImageContainer = styled.div<{
   isVisible: boolean;
   animationType: string;
+  theme: string;
+  isMobile: boolean;
 }>`
   position: absolute;
   top: 0;
@@ -183,6 +185,26 @@ const ImageContainer = styled.div<{
     0.5s ease-in-out forwards;
   opacity: ${(props) => (props.isVisible ? 1 : 0)};
   transition: opacity 0.5s ease-in-out;
+
+  ${({ theme, isMobile }) =>
+    theme !== "matrix" &&
+    isMobile &&
+    `
+      transform: scale(1.2);
+      transform-origin: center;
+    `}
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    ${({ theme, isMobile }) =>
+      theme !== "matrix" &&
+      isMobile &&
+      `
+        object-fit: contain;
+      `}
+  }
 `;
 
 const PillContainer = styled.div`
@@ -572,6 +594,8 @@ export default function Home() {
             <ImageContainer
               isVisible={theme === "matrix"}
               animationType={matrixImageAnimation}
+              theme={theme}
+              isMobile={isMobile}
             >
               <Image
                 src="/my-photo-matrix.png"
@@ -583,6 +607,8 @@ export default function Home() {
             <ImageContainer
               isVisible={theme !== "matrix"}
               animationType={brightImageAnimation}
+              theme={theme}
+              isMobile={isMobile}
             >
               <Image
                 src="/my-photo-bright.png"
