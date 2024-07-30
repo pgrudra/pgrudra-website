@@ -224,7 +224,7 @@ const UnderlinedLink = styled.span`
 
 const EmailFormContainer = styled.div<{ show: boolean; opacity: number }>`
   position: absolute;
-  top: 100%;
+  top: 85%;
   left: -10%;
   width: 120%;
   border-bottom-left-radius: 20px;
