@@ -276,6 +276,27 @@ const EmailInput = styled.input`
   font-size: 12px;
 `;
 
+const PrevWeekWrapper = styled.button<{ theme: string }>`
+  cursor: pointer;
+  background: transparent;
+  font-size: 24px;
+  font-weight: bold;
+  position: absolute;
+  right: calc(0%);
+  bottom: -100px;
+  border: 1px solid
+    ${({ theme }) => (theme === "matrix" ? "inherit" : "inherit")};
+  border-radius: 4px;
+  padding: 4px;
+  color: inherit;
+  font: inherit;
+  @media (max-width: 768px) {
+    position: static;
+    order: 1;
+    margin-bottom: 20px;
+  }
+`;
+
 declare global {
   interface Window {
     fnames?: any[];
@@ -570,6 +591,16 @@ export default function Home() {
               />
             </ImageContainer>
           </ImageWrapper>
+          <PrevWeekWrapper
+            onClick={() =>
+              handleClick(
+                "https://sparkly-oval-f13.notion.site/My-Previous-Week-ccf1a74bdd88463586c0a0525c44e2d0"
+              )
+            }
+            theme={theme}
+          >
+            My Prev Week
+          </PrevWeekWrapper>
           <NameWrapper>Prajwal Rudrakshi</NameWrapper>
         </ContentWrapper>
       </HomeContainer>
