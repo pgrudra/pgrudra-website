@@ -224,7 +224,7 @@ const UnderlinedLink = styled.span`
 
 const EmailFormContainer = styled.div<{ show: boolean; opacity: number }>`
   position: absolute;
-  top: 85%;
+  top: 90%;
   left: -10%;
   width: 120%;
   border-bottom-left-radius: 20px;
@@ -292,7 +292,7 @@ const PrevWeekWrapper = styled.button<{ theme: string }>`
   font: inherit;
   @media (max-width: 768px) {
     order: 2;
-    bottom: -90px;
+    bottom: -95px;
     border: 1px solid
       ${(props) => (props.theme === "matrix" ? "#00FFFF" : "#126fb1")};
   }
