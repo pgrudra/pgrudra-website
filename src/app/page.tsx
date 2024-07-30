@@ -239,22 +239,17 @@ const EmailFormContainer = styled.div<{ show: boolean; opacity: number }>`
   }
 `;
 
-const EmailInput = styled.input`
-  padding: 5px;
-  width: 90%;
-  font-size: 12px;
-`;
-
 const SubmitButton = styled.button<{ theme: string }>`
   background-color: ${({ theme }) =>
     theme === "matrix" ? "#0c84bc" : "#0c7bbc"};
-
   color: ${({ theme }) => (theme === "matrix" ? "black" : "#beeaf3")};
   border: none;
   padding: 5px 10px;
   border-radius: 5px;
   cursor: pointer;
   font-size: 12px;
+  font-family: ${({ theme }) =>
+    theme === "matrix" ? "Matrix-font" : "inherit"};
   margin-top: 5px;
 `;
 
@@ -267,8 +262,12 @@ const MailchimpFormContainer = styled.div`
   background: transparent;
   align-items: center;
   display: flex;
-  display: flex;
   flex-direction: column;
+`;
+
+const EmailInput = styled.input`
+  padding: 5px;
+  font-size: 12px;
 `;
 
 export default function Home() {
@@ -286,43 +285,35 @@ export default function Home() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState("");
 
-  const handleEmailSubmit = async (e: React.FormEvent) => {
+  const handleEmailSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
     setSubmitError("");
 
-    try {
-      const response = await fetch(
-        "https://app.us22.list-manage.com/subscribe/post-json?u=5566bab7bcfbeb7bdaf60e277&id=3a92b4aa25&c=?",
-        {
-          method: "POST",
-          body: JSON.stringify({
-            EMAIL: email,
-            b_5566bab7bcfbeb7bdaf60e277_3a92b4aa25: "", // This is the honeypot field
-          }),
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
+    const form = e.currentTarget;
+    const formData = new FormData(form);
 
-      const data = await response.json();
-
-      if (data.result === "success") {
+    fetch(form.action, {
+      method: "POST",
+      body: formData,
+      mode: "no-cors",
+    })
+      .then(() => {
+        // We can't know for sure if the submission was successful due to 'no-cors'
         setShowEmailForm(false);
         setEmail("");
         alert(
           "Thank you for subscribing! You'll be notified when PollBetter launches."
         );
-      } else {
-        setSubmitError(data.msg || "An error occurred. Please try again.");
-      }
-    } catch (error) {
-      setSubmitError("An error occurred. Please try again.");
-    } finally {
-      setIsSubmitting(false);
-    }
+      })
+      .catch((error) => {
+        setSubmitError("An error occurred. Please try again.");
+      })
+      .finally(() => {
+        setIsSubmitting(false);
+      });
   };
+
   useEffect(() => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth <= 768);
@@ -440,6 +431,9 @@ export default function Home() {
                       <MailchimpFormContainer>
                         <form
                           onSubmit={handleEmailSubmit}
+                          action="https://app.us22.list-manage.com/subscribe/post?u=5566bab7bcfbeb7bdaf60e277&amp;id=3a92b4aa25"
+                          method="post"
+                          target="_blank"
                           style={{
                             width: "100%",
                             display: "flex",
@@ -449,11 +443,24 @@ export default function Home() {
                         >
                           <EmailInput
                             type="email"
+                            name="EMAIL"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                             placeholder="Enter your email"
                             required
                           />
+                          {/* Honeypot field to prevent bot signups */}
+                          <div
+                            style={{ position: "absolute", left: "-5000px" }}
+                            aria-hidden="true"
+                          >
+                            <input
+                              type="text"
+                              name="b_5566bab7bcfbeb7bdaf60e277_3a92b4aa25"
+                              tabIndex={-1}
+                              value=""
+                            />
+                          </div>
                           {submitError && (
                             <p
                               style={{
@@ -539,6 +546,9 @@ export default function Home() {
                       <MailchimpFormContainer>
                         <form
                           onSubmit={handleEmailSubmit}
+                          action="https://app.us22.list-manage.com/subscribe/post?u=5566bab7bcfbeb7bdaf60e277&amp;id=3a92b4aa25"
+                          method="post"
+                          target="_blank"
                           style={{
                             width: "100%",
                             display: "flex",
@@ -548,11 +558,24 @@ export default function Home() {
                         >
                           <EmailInput
                             type="email"
+                            name="EMAIL"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                             placeholder="Enter your email"
                             required
                           />
+                          {/* Honeypot field to prevent bot signups */}
+                          <div
+                            style={{ position: "absolute", left: "-5000px" }}
+                            aria-hidden="true"
+                          >
+                            <input
+                              type="text"
+                              name="b_5566bab7bcfbeb7bdaf60e277_3a92b4aa25"
+                              tabIndex={-1}
+                              value=""
+                            />
+                          </div>
                           {submitError && (
                             <p
                               style={{
