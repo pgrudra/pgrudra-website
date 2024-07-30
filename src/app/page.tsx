@@ -265,54 +265,37 @@ const MailchimpFormContainer = styled.div`
   flex-direction: column;
 `;
 
+const NestedFormContainer = styled.div`
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+`;
+
 const EmailInput = styled.input`
   padding: 5px;
   font-size: 12px;
 `;
 
+declare global {
+  interface Window {
+    fnames?: any[];
+    ftypes?: any[];
+    jQuery?: any;
+  }
+}
+
 export default function Home() {
   const { theme } = useTheme();
   const [bluePillOpacity, setBluePillOpacity] = useState(1);
   const [tooltipOpacity, setTooltipOpacity] = useState(0);
-  const [showEmailForm, setShowEmailForm] = useState(false);
-  const [email, setEmail] = useState("");
   const [isMobile, setIsMobile] = useState(false);
   const [previousTheme, setPreviousTheme] = useState<string | null>(null);
   const [matrixImageAnimation, setMatrixImageAnimation] =
     useState<string>("none");
   const [brightImageAnimation, setBrightImageAnimation] =
     useState<string>("none");
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitError, setSubmitError] = useState("");
-
-  const handleEmailSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    setSubmitError("");
-
-    const form = e.currentTarget;
-    const formData = new FormData(form);
-
-    fetch(form.action, {
-      method: "POST",
-      body: formData,
-      mode: "no-cors",
-    })
-      .then(() => {
-        // We can't know for sure if the submission was successful due to 'no-cors'
-        setShowEmailForm(false);
-        setEmail("");
-        alert(
-          "Thank you for subscribing! You'll be notified when PollBetter launches."
-        );
-      })
-      .catch((error) => {
-        setSubmitError("An error occurred. Please try again.");
-      })
-      .finally(() => {
-        setIsSubmitting(false);
-      });
-  };
+  const [email, setEmail] = useState("");
+  const [showEmailForm, setShowEmailForm] = useState(false);
 
   useEffect(() => {
     const checkMobile = () => {
@@ -429,57 +412,37 @@ export default function Home() {
                       opacity={tooltipOpacity}
                     >
                       <MailchimpFormContainer>
-                        <form
-                          onSubmit={handleEmailSubmit}
-                          action="https://app.us22.list-manage.com/subscribe/post?u=5566bab7bcfbeb7bdaf60e277&amp;id=3a92b4aa25"
-                          method="post"
-                          target="_blank"
-                          style={{
-                            width: "100%",
-                            display: "flex",
-                            flexDirection: "column",
-                            alignItems: "center",
-                          }}
-                        >
-                          <EmailInput
-                            type="email"
-                            name="EMAIL"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            placeholder="Enter your email"
-                            required
-                          />
-                          {/* Honeypot field to prevent bot signups */}
-                          <div
-                            style={{ position: "absolute", left: "-5000px" }}
-                            aria-hidden="true"
+                        <div id="mc_embed_signup">
+                          <form
+                            action="https://app.us22.list-manage.com/subscribe/post?u=5566bab7bcfbeb7bdaf60e277&amp;id=3a92b4aa25&amp;f_id=000fd1e1f0"
+                            method="post"
+                            id="mc-embedded-subscribe-form"
+                            name="mc-embedded-subscribe-form"
+                            className="validate"
                           >
-                            <input
-                              type="text"
-                              name="b_5566bab7bcfbeb7bdaf60e277_3a92b4aa25"
-                              tabIndex={-1}
-                              value=""
-                            />
-                          </div>
-                          {submitError && (
-                            <p
-                              style={{
-                                color: "red",
-                                fontSize: "12px",
-                                margin: "2px",
-                              }}
-                            >
-                              {submitError}
-                            </p>
-                          )}
-                          <SubmitButton
-                            type="submit"
-                            disabled={isSubmitting}
-                            theme={theme}
-                          >
-                            {isSubmitting ? "Submitting..." : "Notify Me"}
-                          </SubmitButton>
-                        </form>
+                            <NestedFormContainer id="mc_embed_signup_scroll">
+                              <EmailInput
+                                type="email"
+                                name="EMAIL"
+                                className="required email"
+                                id="mce-EMAIL"
+                                required
+                                placeholder="Enter your email"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                              />
+                              <SubmitButton
+                                type="submit"
+                                name="subscribe"
+                                id="mc-embedded-subscribe"
+                                className="button"
+                                theme={theme}
+                              >
+                                Notify Me
+                              </SubmitButton>
+                            </NestedFormContainer>
+                          </form>
+                        </div>
                       </MailchimpFormContainer>
                     </EmailFormContainer>
                   </PillContainer>
@@ -544,57 +507,38 @@ export default function Home() {
                       opacity={tooltipOpacity}
                     >
                       <MailchimpFormContainer>
-                        <form
-                          onSubmit={handleEmailSubmit}
-                          action="https://app.us22.list-manage.com/subscribe/post?u=5566bab7bcfbeb7bdaf60e277&amp;id=3a92b4aa25"
-                          method="post"
-                          target="_blank"
-                          style={{
-                            width: "100%",
-                            display: "flex",
-                            flexDirection: "column",
-                            alignItems: "center",
-                          }}
-                        >
-                          <EmailInput
-                            type="email"
-                            name="EMAIL"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            placeholder="Enter your email"
-                            required
-                          />
-                          {/* Honeypot field to prevent bot signups */}
-                          <div
-                            style={{ position: "absolute", left: "-5000px" }}
-                            aria-hidden="true"
+                        <div id="mc_embed_signup">
+                          <form
+                            action="https://app.us22.list-manage.com/subscribe/post?u=5566bab7bcfbeb7bdaf60e277&amp;id=3a92b4aa25&amp;f_id=000fd1e1f0"
+                            method="post"
+                            id="mc-embedded-subscribe-form"
+                            name="mc-embedded-subscribe-form"
+                            className="validate"
+                            target="_blank"
                           >
-                            <input
-                              type="text"
-                              name="b_5566bab7bcfbeb7bdaf60e277_3a92b4aa25"
-                              tabIndex={-1}
-                              value=""
-                            />
-                          </div>
-                          {submitError && (
-                            <p
-                              style={{
-                                color: "red",
-                                fontSize: "12px",
-                                margin: "2px",
-                              }}
-                            >
-                              {submitError}
-                            </p>
-                          )}
-                          <SubmitButton
-                            type="submit"
-                            disabled={isSubmitting}
-                            theme={theme}
-                          >
-                            {isSubmitting ? "Submitting..." : "Notify Me"}
-                          </SubmitButton>
-                        </form>
+                            <NestedFormContainer id="mc_embed_signup_scroll">
+                              <EmailInput
+                                type="email"
+                                name="EMAIL"
+                                className="required email"
+                                id="mce-EMAIL"
+                                required
+                                placeholder="Enter your email"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                              />
+                              <SubmitButton
+                                type="submit"
+                                name="subscribe"
+                                id="mc-embedded-subscribe"
+                                className="button"
+                                theme={theme}
+                              >
+                                Notify Me
+                              </SubmitButton>
+                            </NestedFormContainer>
+                          </form>
+                        </div>
                       </MailchimpFormContainer>
                     </EmailFormContainer>
                   </PillContainer>
