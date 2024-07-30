@@ -285,14 +285,15 @@ const PrevWeekWrapper = styled.button<{ theme: string }>`
   right: calc(0%);
   bottom: -150px;
   border: 1px solid
-    ${({ theme }) => (theme === "matrix" ? "inherit" : "inherit")};
+    ${(props) => (props.theme === "matrix" ? "inherit" : "#126fb1")};
   border-radius: 4px;
   padding: 4px;
   color: inherit;
   font: inherit;
   @media (max-width: 768px) {
     order: 2;
-    bottom: -20px;
+    border: 1px solid
+      ${(props) => (props.theme === "matrix" ? "#00FFFF" : "#126fb1")};
   }
 `;
 
