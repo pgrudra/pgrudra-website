@@ -292,7 +292,7 @@ const PrevWeekWrapper = styled.button<{ theme: string }>`
   font: inherit;
   @media (max-width: 768px) {
     order: 2;
-    bottom: -100px;
+    bottom: -90px;
     border: 1px solid
       ${(props) => (props.theme === "matrix" ? "#00FFFF" : "#126fb1")};
   }
