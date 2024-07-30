@@ -190,7 +190,7 @@ const ImageContainer = styled.div<{
     theme !== "matrix" &&
     isMobile &&
     `
-      transform: scale(1.2);
+      transform: scale(1.4);
       transform-origin: center;
     `}
 
