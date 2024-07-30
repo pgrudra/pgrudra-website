@@ -291,7 +291,6 @@ const PrevWeekWrapper = styled.button<{ theme: string }>`
   color: inherit;
   font: inherit;
   @media (max-width: 768px) {
-    position: static;
     order: 2;
   }
 `;
