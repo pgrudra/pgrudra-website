@@ -102,28 +102,6 @@ const slideInFromRight = keyframes`
   }
 `;
 
-const ImageWrapper = styled.div`
-  position: absolute;
-  left: 60%;
-  transform: translateX(-50%);
-  width: 200px;
-  height: 200px;
-  overflow: hidden;
-  border-bottom-left-radius: 5px;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
-  border-bottom-right-radius: 5px;
-
-  @media (max-width: 768px) {
-    position: relative;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 150px;
-    height: 150px;
-    margin-bottom: 20px;
-  }
-`;
-
 const NameWrapper = styled.div`
   font-size: 36px;
   font-weight: bold;
@@ -157,6 +135,35 @@ const PillButton = styled.button<{ bgImage: string; opacity: number }>`
   }
 `;
 
+const ImageWrapper = styled.div<{ isMobile: boolean; theme: string }>`
+  position: absolute;
+  left: 60%;
+  transform: translateX(-50%);
+  width: 200px;
+  height: 200px;
+  overflow: hidden;
+  border-bottom-left-radius: 5px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 5px;
+
+  @media (max-width: 768px) {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 150px;
+    height: 150px;
+    margin-bottom: 20px;
+
+    ${({ theme }) =>
+      theme !== "matrix" &&
+      `
+      width: 180px;  // 120% of 150px
+      height: 180px; // 120% of 150px
+    `}
+  }
+`;
+
 const ImageContainer = styled.div<{
   isVisible: boolean;
   animationType: string;
@@ -186,24 +193,10 @@ const ImageContainer = styled.div<{
   opacity: ${(props) => (props.isVisible ? 1 : 0)};
   transition: opacity 0.5s ease-in-out;
 
-  ${({ theme, isMobile }) =>
-    theme !== "matrix" &&
-    isMobile &&
-    `
-      transform: scale(1.4);
-      transform-origin: center;
-    `}
-
   img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    ${({ theme, isMobile }) =>
-      theme !== "matrix" &&
-      isMobile &&
-      `
-        object-fit: contain;
-      `}
   }
 `;
 
@@ -590,7 +583,7 @@ export default function Home() {
               </>
             )}
           </TextContent>
-          <ImageWrapper>
+          <ImageWrapper isMobile={isMobile} theme={theme}>
             <ImageContainer
               isVisible={theme === "matrix"}
               animationType={matrixImageAnimation}
