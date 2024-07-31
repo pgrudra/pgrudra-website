@@ -154,13 +154,6 @@ const ImageWrapper = styled.div<{ isMobile: boolean; theme: string }>`
     width: 150px;
     height: 150px;
     margin-bottom: 20px;
-
-    ${({ theme }) =>
-      theme !== "matrix" &&
-      `
-      width: 180px;  // 120% of 150px
-      height: 180px; // 120% of 150px
-    `}
   }
 `;
 
