@@ -54,9 +54,9 @@ const MoreAboutMe: React.FC = () => {
             Studied in hometown till 10th grade. Then went to Narayana,
             Hyderabad, where I had the most gratified years of my life. It's due
             to the mentorship of my teachers & staff, and my hardwork that I
-            cracked JEE Advanced & joined IIT Kanpur for a degree in Physics.
-            Though I feel I couldn't take much advantage of my time at IIT,
-            happy that I made friends for life over there.
+            cracked JEE Advanced & joined IIT Kanpur in 2017 for a degree in
+            Physics. Though I feel I couldn't take much advantage of my time at
+            IIT, happy that I made friends for life over there.
           </SectionContent>
         </MoreAboutMeSection>
       </MoreAboutMeContent>

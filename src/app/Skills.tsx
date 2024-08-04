@@ -64,7 +64,6 @@ const Skills = () => {
     { name: "Mockito", level: 60 },
     { name: "Swagger", level: 80 },
     { name: "Graylog", level: 80 },
-    { name: "AWS", level: 60 },
     { name: "Next.js", level: 10 },
   ];
 
