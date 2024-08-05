@@ -1,6 +1,7 @@
 import os
 import requests
 import json
+import re
 
 NOTION_TOKEN = os.environ['NOTION_TOKEN']
 DATABASE_ID = os.environ['NOTION_DATABASE_ID']
