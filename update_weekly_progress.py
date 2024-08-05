@@ -30,7 +30,7 @@ def get_latest_page():
     print(f"Response status code: {response.status_code}")
     print(f"Response content: {response.text}")
     
-    response.raise_for_status()  # Raise an exception for HTTP errors
+    response.raise_for_status()
     data = response.json()
     
     if 'results' in data and data['results']:
