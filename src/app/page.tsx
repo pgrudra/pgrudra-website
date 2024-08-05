@@ -9,6 +9,7 @@ import RecentWork from "./RecentWork";
 import Skills from "./Skills";
 import Experience from "./Experience";
 import MoreAboutMe from "./MoreAboutMe";
+import { prevWeekUrl } from "@/config/url";
 
 const HomeContainer = styled.div`
   display: flex;
@@ -387,6 +388,10 @@ export default function Home() {
     setShowEmailForm(true);
   };
 
+  const handlePrevWeekClick = () => {
+    handleClick(prevWeekUrl);
+  };
+
   return (
     <div onMouseMove={handleMouseMove}>
       <HomeContainer id="home">
@@ -604,14 +609,7 @@ export default function Home() {
               />
             </ImageContainer>
           </ImageWrapper>
-          <PrevWeekWrapper
-            onClick={() =>
-              handleClick(
-                "https://sparkly-oval-f13.notion.site/My-Previous-Week-ccf1a74bdd88463586c0a0525c44e2d0"
-              )
-            }
-            theme={theme}
-          >
+          <PrevWeekWrapper onClick={handlePrevWeekClick} theme={theme}>
             My Prev Week
           </PrevWeekWrapper>
           <NameWrapper>Prajwal Rudrakshi</NameWrapper>

@@ -33,9 +33,8 @@ def update_repo_file(file_path, new_url):
     with open(file_path, 'r') as file:
         content = file.read()
 
-    # Use regex to find and replace the URL in the PrevWeekWrapper onClick prop
     updated_content = re.sub(
-        r'(<PrevWeekWrapper[^>]*onClick\s*=\s*\(\)\s*=>\s*handleClick\s*\(\s*")[^"]+(")',
+        r'(export const prevWeekUrl = ").*(")',
         f'\\1{new_url}\\2',
         content
     )
