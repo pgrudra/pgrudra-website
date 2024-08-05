@@ -45,7 +45,7 @@ def update_repo_file(file_path, new_url):
 if __name__ == "__main__":
     latest_url = get_latest_page()
     if latest_url:
-        update_repo_file('src/app/page.tsx', latest_url)
+        update_repo_file('src/config/urls.ts', latest_url)
         print(f"Updated with new URL: {latest_url}")
     else:
         print("No new pages found or error occurred.")
