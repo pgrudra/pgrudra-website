@@ -22,27 +22,31 @@ def get_latest_page():
         ],
         "page_size": 1
     }
-    print(f"Requesting URL: {url}")
-    print(f"Headers: {json.dumps(headers, indent=2)}")
-    print(f"Payload: {json.dumps(payload, indent=2)}")
-    
     response = requests.post(url, json=payload, headers=headers)
-    print(f"Response status code: {response.status_code}")
-    print(f"Response content: {response.text}")
-    
-    response.raise_for_status()
     data = response.json()
     
-    if 'results' in data and data['results']:
+    if data['results']:
         return data['results'][0]['url']
     return None
 
+def update_repo_file(file_path, new_url):
+    with open(file_path, 'r') as file:
+        content = file.read()
+
+    # Use regex to find and replace the URL in the PrevWeekWrapper onClick prop
+    updated_content = re.sub(
+        r'(<PrevWeekWrapper[^>]*onClick\s*=\s*\(\)\s*=>\s*handleClick\s*\(\s*")[^"]+(")',
+        f'\\1{new_url}\\2',
+        content
+    )
+
+    with open(file_path, 'w') as file:
+        file.write(updated_content)
+
 if __name__ == "__main__":
-    try:
-        latest_url = get_latest_page()
-        if latest_url:
-            print(f"Latest URL: {latest_url}")
-        else:
-            print("No results found")
-    except Exception as e:
-        print(f"An error occurred: {str(e)}")
+    latest_url = get_latest_page()
+    if latest_url:
+        update_repo_file('src/app/page.tsx', latest_url)
+        print(f"Updated with new URL: {latest_url}")
+    else:
+        print("No new pages found or error occurred.")
