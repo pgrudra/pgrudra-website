@@ -22,9 +22,13 @@ def get_latest_page():
         "page_size": 1
     }
     response = requests.post(url, json=payload, headers=headers)
+    response.raise_for_status()  # Raise an exception for HTTP errors
     data = response.json()
     
-    if data['results']:
+    print(f"API Response: {data}")  # Log the entire response
+    
+    
+    if 'results' in data and data['results']:
         return data['results'][0]['url']
     return None
 
