@@ -9,7 +9,7 @@ import RecentWork from "./RecentWork";
 import Skills from "./Skills";
 import Experience from "./Experience";
 import MoreAboutMe from "./MoreAboutMe";
-import { prevWeekUrl } from "@/config/url";
+import { prevWeekUrl } from "@/config/urls";
 
 const HomeContainer = styled.div`
   display: flex;
