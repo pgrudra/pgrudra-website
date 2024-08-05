@@ -16,7 +16,7 @@ def get_latest_page():
     payload = {
         "sorts": [
             {
-                "property": "Created time",
+                "timestamp": "created_time",
                 "direction": "descending"
             }
         ],
