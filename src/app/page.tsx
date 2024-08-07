@@ -9,7 +9,7 @@ import RecentWork from "./RecentWork";
 import Skills from "./Skills";
 import Experience from "./Experience";
 import MoreAboutMe from "./MoreAboutMe";
-import { prevWeekUrl } from "@/config/urls";
+import { prevWeekUrl, weekendLearningsUrl } from "@/config/urls";
 
 const HomeContainer = styled.div`
   display: flex;
@@ -46,7 +46,7 @@ const TextContent = styled.div`
   flex-direction: column;
   align-items: flex-end;
   width: 300px;
-  margin-right: 800px;
+  margin-right: 550px;
   margin-top: 24px;
 
   @media (max-width: 768px) {
@@ -307,6 +307,38 @@ const PrevWeekWrapper = styled.button<{ theme: string }>`
   }
 `;
 
+const WeekendLearningsButton = styled.button<{ theme: string }>`
+  position: absolute;
+  left: calc(0%);
+  bottom: -180px;
+  background: transparent;
+  font-size: 20px;
+  font-weight: bold;
+  border: 1px solid
+    ${(props) => (props.theme === "matrix" ? "#00FFFF" : "#126fb1")};
+  border-radius: 4px;
+  padding: 8px 12px;
+  color: inherit;
+  font-family: inherit;
+  cursor: pointer;
+  transform: rotate(-8deg);
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: rotate(0deg);
+  }
+
+  @media (max-width: 768px) {
+    bottom: -140px;
+    left: 50%;
+    transform: translateX(-50%) rotate(-5deg);
+
+    &:hover {
+      transform: translateX(-50%) rotate(0deg);
+    }
+  }
+`;
+
 declare global {
   interface Window {
     fnames?: any[];
@@ -365,8 +397,8 @@ export default function Home() {
           Math.pow(event.clientY - buttonCenterY, 2)
       );
 
-      const maxDistance = 300;
-      const minDistance = 150;
+      const maxDistance = 200;
+      const minDistance = 125;
       let distanceRatio = Math.min(
         Math.max(0, distance - minDistance) / (maxDistance - minDistance),
         1
@@ -390,6 +422,10 @@ export default function Home() {
 
   const handlePrevWeekClick = () => {
     handleClick(prevWeekUrl);
+  };
+
+  const handleWeekendLearningsClick = () => {
+    handleClick(weekendLearningsUrl);
   };
 
   return (
@@ -612,6 +648,12 @@ export default function Home() {
           <PrevWeekWrapper onClick={handlePrevWeekClick} theme={theme}>
             My Prev Week
           </PrevWeekWrapper>
+          <WeekendLearningsButton
+            onClick={handleWeekendLearningsClick}
+            theme={theme}
+          >
+            Sunday Learnings
+          </WeekendLearningsButton>
           <NameWrapper>Prajwal Rudrakshi</NameWrapper>
         </ContentWrapper>
       </HomeContainer>
