@@ -329,8 +329,8 @@ const WeekendLearningsButton = styled.button<{ theme: string }>`
   }
 
   @media (max-width: 768px) {
-    bottom: -140px;
-    left: 50%;
+    bottom: -95px;
+    left: 30%;
     transform: translateX(-50%) rotate(-5deg);
 
     &:hover {
