@@ -628,6 +628,7 @@ export default function Home() {
                 src="/my-photo-matrix.png"
                 alt="Prajwal Rudrakshi's matrix image"
                 layout="fill"
+                priority={true}
                 objectFit="cover"
               />
             </ImageContainer>
@@ -641,6 +642,7 @@ export default function Home() {
                 src="/my-photo-bright.png"
                 alt="Prajwal Rudrakshi's bright image"
                 layout="fill"
+                priority={true}
                 objectFit="cover"
               />
             </ImageContainer>
