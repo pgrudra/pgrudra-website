@@ -3,6 +3,7 @@ import { ThemeProvider } from "./ThemeContext";
 import Header from "./Header";
 import Footer from "./Footer";
 import Script from "next/script";
+import { Analytics } from "@vercel/analytics/react";
 
 export const metadata = {
   title: "Prajwal Rudrakshi - Personal Website",
@@ -29,6 +30,7 @@ export default function RootLayout({
           src="https://www.googletagmanager.com/gtag/js?id=G-KCQCV6C86B"
           strategy="afterInteractive"
         />
+        <Analytics />
         <ThemeProvider>
           <Header />
           <main>{children}</main>
