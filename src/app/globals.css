@@ -15,6 +15,8 @@ body {
   margin: 0;
   padding: 0;
   transition: background-color 0.1s, color 0.1s;
+  background-color: var(--matrix-background);
+  color: var(--matrix-text);
 }
 
 body.matrix-theme {
@@ -25,6 +27,7 @@ body.matrix-theme {
 
 body.bright-theme {
   background-image: url('/bright-theme-pattern.svg');
+  background-color: transparent;
   background-repeat: repeat;
   background-size: cover;
   background-position: center;
@@ -81,4 +84,20 @@ nav ul li {
 
 .bright-theme .repo-link {
   color: var(--repo-link-bright);
+}
+
+[data-theme="matrix"] body {
+  background-color: var(--matrix-background);
+  color: var(--matrix-text);
+  font-family: 'MatrixFont', sans-serif;
+}
+
+[data-theme="bright"] body {
+  background-image: url('/bright-theme-pattern.svg');
+  background-repeat: repeat;
+  background-color: transparent;
+  background-size: cover;
+  background-position: center;
+  color: var(--bright-text);
+  font-family: sans-serif;
 }
