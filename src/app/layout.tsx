@@ -3,7 +3,6 @@ import { ThemeProvider } from "./ThemeContext";
 import Header from "./Header";
 import Footer from "./Footer";
 import Script from "next/script";
-import { Analytics } from "@vercel/analytics/react";
 
 export const metadata = {
   title: "Prajwal Rudrakshi - Personal Website",
@@ -35,7 +34,6 @@ export default function RootLayout({
           src="https://cloud.umami.is/script.js"
           data-website-id="01eb0dac-f0ce-4d74-bc83-f996be28ee95"
         ></script>
-        <Analytics />
         <ThemeProvider>
           <Header />
           <main>{children}</main>
