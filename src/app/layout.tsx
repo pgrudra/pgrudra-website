@@ -15,7 +15,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" data-theme="matrix">
+    <html lang="en">
       <body>
         <Script id="google-analytics" strategy="afterInteractive">
           {`
