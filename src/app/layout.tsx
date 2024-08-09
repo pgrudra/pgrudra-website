@@ -30,6 +30,11 @@ export default function RootLayout({
           src="https://www.googletagmanager.com/gtag/js?id=G-KCQCV6C86B"
           strategy="afterInteractive"
         />
+        <script
+          defer
+          src="https://cloud.umami.is/script.js"
+          data-website-id="01eb0dac-f0ce-4d74-bc83-f996be28ee95"
+        ></script>
         <Analytics />
         <ThemeProvider>
           <Header />
