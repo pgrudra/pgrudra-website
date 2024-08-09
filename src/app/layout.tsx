@@ -22,11 +22,11 @@ export default function RootLayout({
             window.dataLayer = window.dataLayer || [];
             function gtag(){window.dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', 'G-6HEYQW9H22');
+            gtag('config', 'G-QEQ8JS9J4H');
           `}
         </Script>
         <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-6HEYQW9H22"
+          src="https://www.googletagmanager.com/gtag/js?id=G-QEQ8JS9J4H"
           strategy="afterInteractive"
         />
         <ThemeProvider>
