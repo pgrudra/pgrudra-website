@@ -2,7 +2,7 @@ name: Update Weekly Progress
 
 on:
   schedule:
-    - cron: "0 1 * * MON" # Runs at 1 AM every Monday
+    - cron: "30 19 * * SUN" # Runs at 1 AM every Monday
   workflow_dispatch: # Allows manual triggering
 
 jobs:
