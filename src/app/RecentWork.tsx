@@ -45,11 +45,6 @@ const RecentWork = () => {
 
   const activities = [
     {
-      title: "Building PollBetter",
-      description:
-        "Working on my SAAS product to ease the process of surveying across multiple platforms & analysis of collected data.",
-    },
-    {
       title: "Freelance Android Developer",
       description: (
         <p>
@@ -63,7 +58,7 @@ const RecentWork = () => {
     {
       title: "Learning Web Dev",
       description:
-        "Expanding my knowledge in web development by builing my personal site. This site is a stepping stone towards building PollBetter.",
+        "Expanding my knowledge in web development by builing my personal site. This site is a stepping stone towards building my personal projects.",
     },
   ];
 

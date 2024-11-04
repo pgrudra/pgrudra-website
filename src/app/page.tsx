@@ -448,7 +448,7 @@ export default function Home() {
                   >
                     Red to Connect with Me!
                     <br />
-                    Blue to PollBetter!
+                    Blue to PersonalProj!
                   </p>
                 </div>
                 <div>
@@ -470,7 +470,7 @@ export default function Home() {
                     ></PillButton>
                     <TooltipContainer opacity={tooltipOpacity} theme={theme}>
                       <TooltipText theme={theme}>
-                        PollBetter is under development.
+                        PersonalProj is under development.
                         <br />
                         <UnderlinedLink onClick={handleOptInClick}>
                           Opt to get notified upon launch
@@ -543,7 +543,7 @@ export default function Home() {
                   >
                     Fins to Connect with Me!
                     <br />
-                    Rucksack to PollBetter!
+                    Rucksack to PersonalProj!
                   </p>
                 </div>
                 <div>
@@ -565,7 +565,7 @@ export default function Home() {
                     ></PillButton>
                     <TooltipContainer opacity={tooltipOpacity} theme={theme}>
                       <TooltipText theme={theme}>
-                        PollBetter is under development.
+                        PersonalProj is under development.
                         <br />
                         <UnderlinedLink onClick={handleOptInClick}>
                           Opt to get notified upon launch
