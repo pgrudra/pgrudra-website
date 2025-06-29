@@ -51,6 +51,16 @@ const Experience: React.FC = () => {
       <ExperienceTitle>Past Experience</ExperienceTitle>
       <ExperienceItem>
         <TitleDurationContainer>
+          <TitleAtCompany>Freelance Android Developer @ Zus</TitleAtCompany>
+          <JobDuration>July 2024 - October 2024</JobDuration>
+        </TitleDurationContainer>
+        <JobDescription>
+          Sprearheaded app dev for Vult: Private Cloud & overseeing app dev for
+          Bolt: Cloud Storage Economy.
+        </JobDescription>
+      </ExperienceItem>
+      <ExperienceItem>
+        <TitleDurationContainer>
           <TitleAtCompany>Software Engineer @ Xpressbees</TitleAtCompany>
           <JobDuration>June 2022 - June 2024</JobDuration>
         </TitleDurationContainer>

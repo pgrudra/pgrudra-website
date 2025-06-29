@@ -45,6 +45,11 @@ const RecentWork = () => {
 
   const activities = [
     {
+      title: "Gesture Controlled mini games",
+      description:
+        "Building mini games for fun using mediapipe hands, three.js, vitejs/vanillajs, phaser, netlify",
+    },
+    {
       title: "Freelance Android Developer",
       description: (
         <p>

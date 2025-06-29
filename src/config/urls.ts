@@ -1,2 +1,2 @@
-export const prevWeekUrl = "https://www.notion.so/Things-I-did-3rd-week-of-November-14a546ffb2628069acb3cd7ef6205575";
+export const prevWeekUrl = "https://sparkly-oval-f13.notion.site/Things-that-happened-last-week-of-June-2025-221546ffb26280cd905bd9e48bffa709";
 export const weekendLearningsUrl = "https://sparkly-oval-f13.notion.site/Sunday-Learnings-1f674303f3304f3aaf42974df0834383?pvs=4";
