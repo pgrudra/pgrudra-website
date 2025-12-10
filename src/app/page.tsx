@@ -646,7 +646,7 @@ export default function Home() {
             </ImageContainer>
           </ImageWrapper>
           <PrevWeekWrapper onClick={handlePrevWeekClick} theme={theme}>
-            My Prev Week
+            My Social Media Stuff
           </PrevWeekWrapper>
           <WeekendLearningsButton
             onClick={handleWeekendLearningsClick}
