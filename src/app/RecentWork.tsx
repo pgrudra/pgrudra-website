@@ -45,25 +45,22 @@ const RecentWork = () => {
 
   const activities = [
     {
+      title: "Backend Developer at Loadshare",
+      description:
+        "Building & maintaining the governance system & core allocation engine of Loadshare, a 3rd party logistics provider for last mile deliveries",
+    },
+    {
+      title: "Personalised Gifts through 3D printing",
+      description:
+        "Building Sketch2Shape, a D2C web app for generating truly personalised gifts",
+    },
+    {
       title: "Gesture Controlled mini games",
       description:
         "Building mini games for fun using mediapipe hands, three.js, vitejs/vanillajs, phaser, netlify",
     },
     {
-      title: "Freelance Android Developer",
-      description: (
-        <p>
-          As a freelance developer at Z
-          <span style={{ fontFamily: "gotham" }}>ü</span>s, sprearheading app
-          dev for Vult: Private Cloud & overseeing app dev for Bolt: Cloud
-          Storage Economy.
-        </p>
-      ),
-    },
-    {
-      title: "Learning Web Dev",
-      description:
-        "Expanding my knowledge in web development by builing my personal site. This site is a stepping stone towards building my personal projects.",
+      title: "Vibing with Agentic AI",
     },
   ];
 
